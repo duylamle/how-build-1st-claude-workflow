@@ -1,13 +1,14 @@
 ---
-name: how-build-1st-claude-workflow
+name: claude-personal-workflow-builder
 description: >
-  Step-by-step interactive guide to build your first AI Personal System
+  Interactive guide to build, maintain, and grow your AI Personal System
   with Claude Code. Agents, skills, rules, hooks, memory — from zero
-  to a working system. Trigger: "build my AI workflow", "setup AI system",
+  to a working system, plus upgrade paths and external resource management.
+  Trigger: "build my AI workflow", "setup AI system",
   "how to build claude workflow", "AI personal system".
 ---
 
-# How to Build Your First Claude Code Workflow
+# Claude Personal Workflow Builder
 
 > Hướng dẫn từng bước xây dựng hệ thống AI cá nhân với Claude Code.
 > Từ con số 0 đến hệ thống hoạt động với agents, skills, rules, memory.

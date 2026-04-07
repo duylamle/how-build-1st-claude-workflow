@@ -71,6 +71,35 @@ If you answer "no" to any of these, don't add it.
 
 ---
 
+## Upgrading Existing Skills
+
+Adding new skills is covered above. But what about improving skills you already have?
+
+### Triggers for upgrading
+
+- **Feedback accumulates** — you keep correcting the same output patterns
+- **Domain shifts** — new regulations, tools, or processes change what "good output" means
+- **Community evolves** — new skills on skills.sh do things yours can't
+- **External resources prove value** — a consultant kit (see Phase 10) has patterns worth absorbing
+
+### The upgrade flow
+
+1. **Diagnose** — is the issue in the skill (constraints, template) or in how you use it (prompt quality)?
+2. **Re-research** — `npx skills find [domain]` to see what's new in the community
+3. **Gap analysis** — compare your current skill against new community skills. What's missing?
+4. **Absorb the delta** — integrate only the new parts. Don't rebuild what works.
+5. **Update CHANGELOG** — version bump with what changed and why
+6. **Update sources.md** — log new sources absorbed
+
+### Upgrade vs. rebuild
+
+Upgrade when: the core design is sound but needs additions or refinements.
+Rebuild when: the fundamental approach is wrong (wrong output structure, wrong persona, wrong constraints). Rebuilding is rare — most skills just need incremental improvement.
+
+> **Why This Matters:** Skills are living tools, not static documents. A skill that worked 3 months ago may not work today. Regular upgrades — triggered by real feedback, not scheduled maintenance — keep your system effective.
+
+---
+
 ## Publishing Your Skills
 
 Once a skill is battle-tested — used 10+ times, tuned through feedback, producing consistently good output — consider sharing it with the community.

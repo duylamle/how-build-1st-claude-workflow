@@ -170,8 +170,88 @@ You don't need domain expertise upfront. The bootstrap step leverages Claude's g
 
 ---
 
+## Upgrading Existing Skills
+
+The 6-step pattern above is for building new skills. But what about skills you already have that need improvement?
+
+Upgrading is different from bootstrapping — you're not starting from zero. You have a working skill with known strengths and gaps.
+
+### When to upgrade
+
+- **Output quality drops** — your domain has evolved, but your skill hasn't
+- **Community catches up** — new skills on skills.sh cover things yours doesn't
+- **You outgrow it** — your process has changed and the skill doesn't reflect it
+- **New tools appear** — npm packages, MCP servers, or kits that could enhance your skill
+
+### The upgrade flow
+
+1. **Re-research** — run `npx skills find [your-domain]` again. The ecosystem evolves.
+2. **Gap analysis against YOUR current skill** — not against a blank slate. What's missing now that wasn't missing before?
+3. **Absorb the delta** — only the new parts. Don't rebuild what already works.
+4. **Update sources.md** — log what you absorbed, from where, and when.
+5. **Version bump** — update your CHANGELOG with what changed.
+
+> **Key difference from bootstrapping:** you're comparing against your existing skill, not against nothing. This means you can be surgical — absorb specific improvements without disrupting what already works well.
+
+---
+
+## The Consultant Model
+
+Not everything needs to be absorbed into your system. Some external resources are more valuable kept as-is — like an outsource partner you call when needed.
+
+### Three strategies for external resources
+
+| Strategy | When to use | What happens |
+|---|---|---|
+| **Absorb** | You want to own it completely | Extract the good parts into your skill → delete the source |
+| **Consultant** | It works well as-is, you don't need to own it | Keep it in a reference folder, route to it when relevant |
+| **Promote** | A consultant has proven its value over time | Absorb the best parts → optionally keep or delete the source |
+
+### What counts as an external resource?
+
+- **Community skills** from skills.sh (`npx skills add ...`)
+- **Kits** — bundled toolsets (starter kits, boilerplate repos, domain-specific toolkits)
+- **npm packages** that include Claude skills or prompts
+- **MCP servers** that extend your system's capabilities
+
+### Storage convention
+
+Keep external resources in a dedicated folder (e.g., `external/`) separate from your working system:
+
+```
+your-workspace/
+├── .claude/          ← YOUR system (agents, skills, rules)
+├── external/         ← External resources (read-only reference)
+│   ├── .claudeignore ← Prevents Claude from scanning nested .claude/ folders
+│   ├── CLAUDE.md     ← What's here and how to use it
+│   ├── some-kit/
+│   └── some-package/
+└── ...
+```
+
+**Why separate?** External resources often have their own `.claude/` folders with hooks, settings, and skills. If they live inside your workspace, Claude Code might scan them and create conflicts. A dedicated folder with `.claudeignore` prevents this.
+
+### The decision flow
+
+```
+Install external resource
+    → Read it thoroughly
+    → Try using it for real tasks
+    → Ask yourself: "Do I want to own this, or just use it?"
+        → Own it → Absorb (Steps 3-6 from the absorption pattern)
+        → Use it → Keep as Consultant
+    → After using a consultant 5+ times:
+        → Still valuable as-is? → Keep
+        → Parts worth owning? → Promote (absorb the best parts)
+        → No longer useful? → Delete
+```
+
+> **Why This Matters:** The absorption pattern assumes you always want to own everything. But that's not always true. Some tools are better as dependencies than as internalized knowledge. The consultant model gives you a middle ground — benefit from external resources without the maintenance cost of full absorption.
+
+---
+
 ## Key Principle
 
-**Don't use someone else's skill as-is — use it as a benchmark to level up your own.**
+**Don't use someone else's skill as-is — use it as a benchmark to level up your own.** But not everything needs absorbing — some resources serve you better as consultants you call when needed.
 
-Community skills are written for their author's context, conventions, and needs. Your skill should be written for yours. The absorption pattern lets you benefit from others' experience without inheriting their limitations.
+Community skills are written for their author's context, conventions, and needs. Your skill should be written for yours. The absorption pattern lets you benefit from others' experience without inheriting their limitations. The consultant model lets you benefit without the maintenance cost.
