@@ -1,4 +1,4 @@
-<![CDATA[<div align="center">
+<div align="center">
 
 # 🧰 Product Collection
 
@@ -34,4 +34,3 @@ These skills are distilled from real operational experience building and running
 ## 📄 License
 
 [MIT](LICENSE) — use it, modify it, share it.
-]]>

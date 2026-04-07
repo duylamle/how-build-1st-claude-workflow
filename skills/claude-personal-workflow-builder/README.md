@@ -1,4 +1,4 @@
-<![CDATA[<div align="center">
+<div align="center">
 
 # 🏗️ Claude Personal Workflow Builder
 
@@ -153,4 +153,3 @@ Built by **Lê Trương Duy Lam** — Technical Product Owner at [VNG Corporatio
 ## 📄 License
 
 [MIT](../../LICENSE) — use it, modify it, share it.
-]]>
