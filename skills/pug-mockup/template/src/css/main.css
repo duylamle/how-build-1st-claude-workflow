@@ -1,0 +1,669 @@
+/* ============================================================
+   DESIGN TOKENS
+   Customize these variables to match your brand/project.
+   All components below reference these tokens — change here,
+   update everywhere.
+   ============================================================ */
+:root {
+  /* ---- Colors ---- */
+  --c-primary: #2563EB;
+  --c-primary-hover: #1D4ED8;
+  --c-primary-light: #DBEAFE;       /* backgrounds, badges */
+  --c-secondary: #7C3AED;
+  --c-secondary-hover: #6D28D9;
+
+  --c-success: #16A34A;
+  --c-success-light: #DCFCE7;
+  --c-warning: #D97706;
+  --c-warning-light: #FEF3C7;
+  --c-danger: #DC2626;
+  --c-danger-light: #FEE2E2;
+  --c-info: #0891B2;
+  --c-info-light: #CFFAFE;
+
+  --c-black: #0A0A0A;
+  --c-gray-900: #1A1A1A;
+  --c-gray-700: #454545;
+  --c-gray-500: #737373;
+  --c-gray-400: #A3A3A3;
+  --c-gray-300: #D4D4D4;
+  --c-gray-200: #E5E5E5;
+  --c-gray-100: #F5F5F5;
+  --c-gray-50: #FAFAFA;
+  --c-white: #FFFFFF;
+
+  /* ---- Typography ---- */
+  --font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-mono: 'SF Mono', 'Fira Code', monospace;
+  --fs-xs: 0.75rem;     /* 12px */
+  --fs-sm: 0.857rem;    /* 12px at 14px base */
+  --fs-base: 1rem;      /* 14px */
+  --fs-md: 1.143rem;    /* 16px */
+  --fs-lg: 1.286rem;    /* 18px */
+  --fs-xl: 1.571rem;    /* 22px */
+  --fs-2xl: 2rem;       /* 28px */
+  --fs-3xl: 2.571rem;   /* 36px */
+  --lh-tight: 1.25;
+  --lh-normal: 1.5;
+  --lh-relaxed: 1.75;
+  --fw-normal: 400;
+  --fw-medium: 500;
+  --fw-semibold: 600;
+  --fw-bold: 700;
+
+  /* ---- Spacing (4px base grid) ---- */
+  --sp-1: 4px;
+  --sp-2: 8px;
+  --sp-3: 12px;
+  --sp-4: 16px;
+  --sp-5: 20px;
+  --sp-6: 24px;
+  --sp-8: 32px;
+  --sp-10: 40px;
+  --sp-12: 48px;
+  --sp-16: 64px;
+
+  /* ---- Border Radius ---- */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+  --radius-full: 9999px;
+
+  /* ---- Shadows ---- */
+  --shadow-sm: 0 1px 2px rgba(0,0,0,0.05);
+  --shadow-md: 0 2px 8px rgba(0,0,0,0.08);
+  --shadow-lg: 0 4px 16px rgba(0,0,0,0.12);
+  --shadow-xl: 0 8px 32px rgba(0,0,0,0.16);
+
+  /* ---- Transitions ---- */
+  --transition-fast: 150ms ease;
+  --transition-normal: 250ms ease;
+
+  /* ---- Layout ---- */
+  --sidebar-width: 240px;
+  --header-height: 56px;
+  --container-max: 1200px;
+  --container-narrow: 720px;
+}
+
+
+/* ============================================================
+   BASE RESET
+   ============================================================ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body {
+  font-family: var(--font-family);
+  font-size: 14px;
+  line-height: var(--lh-normal);
+  color: var(--c-black);
+  background: var(--c-white);
+  -webkit-font-smoothing: antialiased;
+}
+
+a { color: inherit; text-decoration: none; }
+a:hover { color: var(--c-primary); }
+img { max-width: 100%; display: block; }
+ul, ol { list-style: none; }
+button { font: inherit; cursor: pointer; border: none; background: none; }
+input, select, textarea { font: inherit; }
+
+
+/* ============================================================
+   SPA PAGE ROUTING
+   All pages hidden by default. JS adds .active to show.
+   ============================================================ */
+.page { display: none; }
+.page.active { display: block; }
+
+
+/* ============================================================
+   TYPOGRAPHY
+   Heading sizes, body text, captions, links.
+   ============================================================ */
+h1 { font-size: var(--fs-3xl); font-weight: var(--fw-bold); line-height: var(--lh-tight); }
+h2 { font-size: var(--fs-2xl); font-weight: var(--fw-bold); line-height: var(--lh-tight); }
+h3 { font-size: var(--fs-xl); font-weight: var(--fw-semibold); line-height: var(--lh-tight); }
+h4 { font-size: var(--fs-lg); font-weight: var(--fw-semibold); line-height: var(--lh-tight); }
+h5 { font-size: var(--fs-md); font-weight: var(--fw-medium); }
+h6 { font-size: var(--fs-base); font-weight: var(--fw-medium); }
+
+.text-sm { font-size: var(--fs-sm); }
+.text-xs { font-size: var(--fs-xs); }
+.text-muted { color: var(--c-gray-500); }
+.text-center { text-align: center; }
+.text-right { text-align: right; }
+
+
+/* ============================================================
+   LAYOUT
+   Container, flex/grid helpers, sidebar+main pattern.
+   ============================================================ */
+
+/* Container */
+.container { max-width: var(--container-max); margin: 0 auto; padding: 0 var(--sp-6); }
+.container-narrow { max-width: var(--container-narrow); margin: 0 auto; padding: 0 var(--sp-6); }
+
+/* Flex helpers */
+.flex { display: flex; }
+.flex-col { flex-direction: column; }
+.flex-wrap { flex-wrap: wrap; }
+.items-center { align-items: center; }
+.items-start { align-items: flex-start; }
+.justify-between { justify-content: space-between; }
+.justify-center { justify-content: center; }
+.gap-1 { gap: var(--sp-1); }
+.gap-2 { gap: var(--sp-2); }
+.gap-3 { gap: var(--sp-3); }
+.gap-4 { gap: var(--sp-4); }
+.gap-6 { gap: var(--sp-6); }
+.gap-8 { gap: var(--sp-8); }
+
+/* Grid helpers */
+.grid { display: grid; gap: var(--sp-4); }
+.grid-2 { grid-template-columns: repeat(2, 1fr); }
+.grid-3 { grid-template-columns: repeat(3, 1fr); }
+.grid-4 { grid-template-columns: repeat(4, 1fr); }
+
+/* Sidebar + Main layout
+   Usage:
+   .page-layout
+     aside.sidebar ...
+     main.main-content ...
+*/
+.page-layout {
+  display: flex;
+  min-height: calc(100vh - var(--header-height));
+}
+.page-layout .main-content {
+  flex: 1;
+  padding: var(--sp-6);
+  overflow-y: auto;
+}
+
+/* Spacing utilities */
+.mt-2 { margin-top: var(--sp-2); }
+.mt-4 { margin-top: var(--sp-4); }
+.mt-6 { margin-top: var(--sp-6); }
+.mt-8 { margin-top: var(--sp-8); }
+.mb-2 { margin-bottom: var(--sp-2); }
+.mb-4 { margin-bottom: var(--sp-4); }
+.mb-6 { margin-bottom: var(--sp-6); }
+.p-2 { padding: var(--sp-2); }
+.p-4 { padding: var(--sp-4); }
+.p-6 { padding: var(--sp-6); }
+
+
+/* ============================================================
+   HEADER
+   Top navigation bar. Sticky by default.
+   ============================================================ */
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  height: var(--header-height);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 var(--sp-6);
+  background: var(--c-white);
+  border-bottom: 1px solid var(--c-gray-200);
+}
+
+.header .logo {
+  font-size: var(--fs-lg);
+  font-weight: var(--fw-bold);
+  color: var(--c-primary);
+}
+
+.header nav { display: flex; gap: var(--sp-4); align-items: center; }
+
+.header nav a {
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-medium);
+  color: var(--c-gray-500);
+  padding: var(--sp-2) var(--sp-3);
+  border-radius: var(--radius-md);
+  transition: color var(--transition-fast), background var(--transition-fast);
+}
+.header nav a:hover { color: var(--c-black); background: var(--c-gray-100); }
+.header nav a.active { color: var(--c-primary); background: var(--c-primary-light); }
+
+
+/* ============================================================
+   SIDEBAR
+   Vertical navigation for dashboard/portal pages.
+   ============================================================ */
+.sidebar {
+  width: var(--sidebar-width);
+  min-height: calc(100vh - var(--header-height));
+  padding: var(--sp-4);
+  background: var(--c-gray-50);
+  border-right: 1px solid var(--c-gray-200);
+  flex-shrink: 0;
+}
+
+.sidebar nav { display: flex; flex-direction: column; gap: var(--sp-1); }
+
+.sidebar nav a {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+  padding: var(--sp-2) var(--sp-3);
+  border-radius: var(--radius-md);
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-medium);
+  color: var(--c-gray-700);
+  transition: background var(--transition-fast), color var(--transition-fast);
+}
+.sidebar nav a:hover { background: var(--c-gray-200); color: var(--c-black); }
+.sidebar nav a.active { background: var(--c-primary-light); color: var(--c-primary); font-weight: var(--fw-semibold); }
+
+.sidebar nav a svg { width: 18px; height: 18px; flex-shrink: 0; }
+
+.sidebar-section { margin-top: var(--sp-6); }
+.sidebar-section-title {
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-semibold);
+  color: var(--c-gray-400);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 0 var(--sp-3);
+  margin-bottom: var(--sp-2);
+}
+
+
+/* ============================================================
+   BUTTONS
+   Primary, secondary, outline, ghost, danger variants.
+   Sizes: sm, default, lg.
+   ============================================================ */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--sp-2);
+  padding: var(--sp-2) var(--sp-4);
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-medium);
+  border-radius: var(--radius-md);
+  transition: all var(--transition-fast);
+  cursor: pointer;
+  border: 1px solid transparent;
+  white-space: nowrap;
+}
+
+.btn-primary { background: var(--c-primary); color: var(--c-white); }
+.btn-primary:hover { background: var(--c-primary-hover); color: var(--c-white); }
+
+.btn-secondary { background: var(--c-gray-100); color: var(--c-gray-700); border-color: var(--c-gray-300); }
+.btn-secondary:hover { background: var(--c-gray-200); color: var(--c-black); }
+
+.btn-outline { background: transparent; color: var(--c-primary); border-color: var(--c-primary); }
+.btn-outline:hover { background: var(--c-primary-light); }
+
+.btn-ghost { background: transparent; color: var(--c-gray-700); }
+.btn-ghost:hover { background: var(--c-gray-100); color: var(--c-black); }
+
+.btn-danger { background: var(--c-danger); color: var(--c-white); }
+.btn-danger:hover { background: #B91C1C; color: var(--c-white); }
+
+.btn-sm { padding: var(--sp-1) var(--sp-3); font-size: var(--fs-xs); }
+.btn-lg { padding: var(--sp-3) var(--sp-6); font-size: var(--fs-base); }
+
+.btn svg { width: 16px; height: 16px; }
+.btn-sm svg { width: 14px; height: 14px; }
+
+
+/* ============================================================
+   CARDS
+   Content containers with optional header, body, footer.
+   ============================================================ */
+.card {
+  background: var(--c-white);
+  border: 1px solid var(--c-gray-200);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+}
+
+.card-header {
+  padding: var(--sp-4) var(--sp-5);
+  border-bottom: 1px solid var(--c-gray-200);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.card-header h3 { font-size: var(--fs-md); }
+
+.card-body { padding: var(--sp-5); }
+
+.card-footer {
+  padding: var(--sp-3) var(--sp-5);
+  border-top: 1px solid var(--c-gray-200);
+  background: var(--c-gray-50);
+}
+
+/* Stat card — dashboard numbers */
+.stat-card { padding: var(--sp-5); }
+.stat-card .stat-label { font-size: var(--fs-sm); color: var(--c-gray-500); margin-bottom: var(--sp-1); }
+.stat-card .stat-value { font-size: var(--fs-2xl); font-weight: var(--fw-bold); }
+.stat-card .stat-change { font-size: var(--fs-xs); margin-top: var(--sp-1); }
+.stat-card .stat-change.up { color: var(--c-success); }
+.stat-card .stat-change.down { color: var(--c-danger); }
+
+
+/* ============================================================
+   BADGES
+   Status indicators, tags, labels.
+   ============================================================ */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-1);
+  padding: 2px var(--sp-2);
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-medium);
+  border-radius: var(--radius-full);
+  white-space: nowrap;
+}
+
+.badge-primary { background: var(--c-primary-light); color: var(--c-primary); }
+.badge-success { background: var(--c-success-light); color: var(--c-success); }
+.badge-warning { background: var(--c-warning-light); color: var(--c-warning); }
+.badge-danger { background: var(--c-danger-light); color: var(--c-danger); }
+.badge-info { background: var(--c-info-light); color: var(--c-info); }
+.badge-gray { background: var(--c-gray-100); color: var(--c-gray-700); }
+
+
+/* ============================================================
+   FORMS
+   Input, select, textarea, checkbox, radio, form groups.
+   ============================================================ */
+.form-group { margin-bottom: var(--sp-4); }
+
+.form-label {
+  display: block;
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-medium);
+  color: var(--c-gray-700);
+  margin-bottom: var(--sp-1);
+}
+
+.form-hint {
+  font-size: var(--fs-xs);
+  color: var(--c-gray-500);
+  margin-top: var(--sp-1);
+}
+
+.form-input,
+.form-select,
+.form-textarea {
+  width: 100%;
+  padding: var(--sp-2) var(--sp-3);
+  font-size: var(--fs-base);
+  border: 1px solid var(--c-gray-300);
+  border-radius: var(--radius-md);
+  background: var(--c-white);
+  color: var(--c-black);
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+.form-input:focus,
+.form-select:focus,
+.form-textarea:focus {
+  outline: none;
+  border-color: var(--c-primary);
+  box-shadow: 0 0 0 3px var(--c-primary-light);
+}
+.form-input::placeholder { color: var(--c-gray-400); }
+.form-textarea { resize: vertical; min-height: 80px; }
+
+.form-input.error { border-color: var(--c-danger); }
+.form-error { font-size: var(--fs-xs); color: var(--c-danger); margin-top: var(--sp-1); }
+
+/* Checkbox / Radio row */
+.form-check {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+  font-size: var(--fs-sm);
+  cursor: pointer;
+}
+.form-check input { width: 16px; height: 16px; accent-color: var(--c-primary); }
+
+
+/* ============================================================
+   TABLES
+   Striped, hoverable data tables.
+   ============================================================ */
+.table-wrapper { overflow-x: auto; }
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--fs-sm);
+}
+
+.table th {
+  text-align: left;
+  font-weight: var(--fw-semibold);
+  color: var(--c-gray-500);
+  font-size: var(--fs-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: var(--sp-3) var(--sp-4);
+  border-bottom: 2px solid var(--c-gray-200);
+}
+
+.table td {
+  padding: var(--sp-3) var(--sp-4);
+  border-bottom: 1px solid var(--c-gray-100);
+  vertical-align: middle;
+}
+
+.table tr:hover td { background: var(--c-gray-50); }
+
+
+/* ============================================================
+   LISTS
+   Action lists, menu items, activity feeds.
+   ============================================================ */
+.list-item {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+  padding: var(--sp-3) var(--sp-4);
+  border-bottom: 1px solid var(--c-gray-100);
+  transition: background var(--transition-fast);
+}
+.list-item:hover { background: var(--c-gray-50); }
+.list-item:last-child { border-bottom: none; }
+
+
+/* ============================================================
+   HERO SECTION
+   Landing page hero with title, subtitle, CTA buttons.
+   ============================================================ */
+.hero {
+  text-align: center;
+  padding: var(--sp-16) var(--sp-6);
+  background: linear-gradient(135deg, var(--c-primary-light), var(--c-white));
+}
+.hero h1 { margin-bottom: var(--sp-4); }
+.hero p { font-size: var(--fs-lg); color: var(--c-gray-500); max-width: 600px; margin: 0 auto var(--sp-6); }
+.hero .hero-actions { display: flex; gap: var(--sp-3); justify-content: center; }
+
+
+/* ============================================================
+   FOOTER
+   Simple footer with links.
+   ============================================================ */
+.footer {
+  padding: var(--sp-8) var(--sp-6);
+  text-align: center;
+  font-size: var(--fs-sm);
+  color: var(--c-gray-500);
+  border-top: 1px solid var(--c-gray-200);
+  margin-top: var(--sp-16);
+}
+
+
+/* ============================================================
+   MODAL / OVERLAY
+   Centered dialog on top of page content.
+   ============================================================ */
+.modal-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.4);
+  z-index: 200;
+  align-items: center;
+  justify-content: center;
+}
+.modal-overlay.active { display: flex; }
+
+.modal {
+  background: var(--c-white);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-xl);
+  width: 90%;
+  max-width: 500px;
+  max-height: 85vh;
+  overflow-y: auto;
+}
+
+.modal-header {
+  padding: var(--sp-4) var(--sp-5);
+  border-bottom: 1px solid var(--c-gray-200);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.modal-header h3 { font-size: var(--fs-md); }
+
+.modal-body { padding: var(--sp-5); }
+
+.modal-footer {
+  padding: var(--sp-3) var(--sp-5);
+  border-top: 1px solid var(--c-gray-200);
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--sp-2);
+}
+
+
+/* ============================================================
+   TOAST / NOTIFICATION
+   Floating notification at top-right.
+   ============================================================ */
+.toast {
+  position: fixed;
+  top: var(--sp-4);
+  right: var(--sp-4);
+  z-index: 300;
+  padding: var(--sp-3) var(--sp-4);
+  border-radius: var(--radius-md);
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-medium);
+  box-shadow: var(--shadow-lg);
+  display: none;
+  align-items: center;
+  gap: var(--sp-2);
+}
+.toast.active { display: flex; }
+.toast-success { background: var(--c-success); color: var(--c-white); }
+.toast-error { background: var(--c-danger); color: var(--c-white); }
+.toast-info { background: var(--c-info); color: var(--c-white); }
+
+
+/* ============================================================
+   AVATAR
+   User profile image placeholder.
+   ============================================================ */
+.avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-full);
+  background: var(--c-primary-light);
+  color: var(--c-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-semibold);
+  flex-shrink: 0;
+}
+.avatar-sm { width: 24px; height: 24px; font-size: 10px; }
+.avatar-lg { width: 48px; height: 48px; font-size: var(--fs-md); }
+
+
+/* ============================================================
+   TABS
+   Horizontal tab navigation.
+   ============================================================ */
+.tabs {
+  display: flex;
+  border-bottom: 2px solid var(--c-gray-200);
+  gap: 0;
+}
+
+.tab {
+  padding: var(--sp-3) var(--sp-4);
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-medium);
+  color: var(--c-gray-500);
+  border-bottom: 2px solid transparent;
+  margin-bottom: -2px;
+  cursor: pointer;
+  transition: color var(--transition-fast), border-color var(--transition-fast);
+}
+.tab:hover { color: var(--c-black); }
+.tab.active { color: var(--c-primary); border-bottom-color: var(--c-primary); }
+
+
+/* ============================================================
+   EMPTY STATE
+   Placeholder when no data is available.
+   ============================================================ */
+.empty-state {
+  text-align: center;
+  padding: var(--sp-12) var(--sp-6);
+  color: var(--c-gray-500);
+}
+.empty-state svg { width: 48px; height: 48px; margin: 0 auto var(--sp-4); opacity: 0.4; }
+.empty-state h3 { color: var(--c-gray-700); margin-bottom: var(--sp-2); }
+
+
+/* ============================================================
+   DIVIDER
+   Horizontal line with optional text.
+   ============================================================ */
+.divider {
+  border: none;
+  border-top: 1px solid var(--c-gray-200);
+  margin: var(--sp-6) 0;
+}
+
+
+/* ============================================================
+   RESPONSIVE
+   Collapse sidebar, stack grids on mobile.
+   ============================================================ */
+@media (max-width: 768px) {
+  .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
+
+  .page-layout { flex-direction: column; }
+  .sidebar {
+    width: 100%;
+    min-height: auto;
+    border-right: none;
+    border-bottom: 1px solid var(--c-gray-200);
+  }
+  .sidebar nav { flex-direction: row; overflow-x: auto; }
+
+  .hero { padding: var(--sp-10) var(--sp-4); }
+  .hero .hero-actions { flex-direction: column; align-items: center; }
+}

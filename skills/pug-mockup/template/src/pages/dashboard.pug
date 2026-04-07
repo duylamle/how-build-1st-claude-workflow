@@ -1,0 +1,46 @@
+//- ============================================================
+//- PAGE: Dashboard (Example — Authenticated)
+//- Route: #dashboard
+//- Layout: sidebar + main content
+//-
+//- This is a starter example. Edit or replace entirely.
+//- ============================================================
+
+.page#page-dashboard
+  .page-layout
+    +sidebar('dashboard')
+    main.main-content
+
+      //- Page header with action button
+      .flex.items-center.justify-between.mb-6
+        h2 Dashboard
+        a.btn.btn-primary(href="#") + New Item
+
+      //- Stat cards
+      .grid.grid-4.gap-4.mb-6
+        .card.stat-card
+          .stat-label Label
+          .stat-value 0
+          .stat-change.up ↑ 0%
+
+        .card.stat-card
+          .stat-label Label
+          .stat-value 0
+
+        .card.stat-card
+          .stat-label Label
+          .stat-value 0
+
+        .card.stat-card
+          .stat-label Label
+          .stat-value 0
+
+      //- Content card
+      .card
+        .card-header
+          h3 Recent Activity
+          a.btn.btn-sm.btn-ghost(href="#") View All
+        .card-body
+          .empty-state
+            h3 No activity yet
+            p Data will appear here.

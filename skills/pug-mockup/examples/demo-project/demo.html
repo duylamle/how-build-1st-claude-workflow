@@ -1,0 +1,1064 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="color-scheme" content="light">
+    <title>MyApp Demo</title>
+    <style>/* ============================================================
+   DESIGN TOKENS
+   Customize these variables to match your brand/project.
+   All components below reference these tokens — change here,
+   update everywhere.
+   ============================================================ */
+:root {
+  /* ---- Colors ---- */
+  --c-primary: #2563EB;
+  --c-primary-hover: #1D4ED8;
+  --c-primary-light: #DBEAFE;       /* backgrounds, badges */
+  --c-secondary: #7C3AED;
+  --c-secondary-hover: #6D28D9;
+
+  --c-success: #16A34A;
+  --c-success-light: #DCFCE7;
+  --c-warning: #D97706;
+  --c-warning-light: #FEF3C7;
+  --c-danger: #DC2626;
+  --c-danger-light: #FEE2E2;
+  --c-info: #0891B2;
+  --c-info-light: #CFFAFE;
+
+  --c-black: #0A0A0A;
+  --c-gray-900: #1A1A1A;
+  --c-gray-700: #454545;
+  --c-gray-500: #737373;
+  --c-gray-400: #A3A3A3;
+  --c-gray-300: #D4D4D4;
+  --c-gray-200: #E5E5E5;
+  --c-gray-100: #F5F5F5;
+  --c-gray-50: #FAFAFA;
+  --c-white: #FFFFFF;
+
+  /* ---- Typography ---- */
+  --font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-mono: 'SF Mono', 'Fira Code', monospace;
+  --fs-xs: 0.75rem;     /* 12px */
+  --fs-sm: 0.857rem;    /* 12px at 14px base */
+  --fs-base: 1rem;      /* 14px */
+  --fs-md: 1.143rem;    /* 16px */
+  --fs-lg: 1.286rem;    /* 18px */
+  --fs-xl: 1.571rem;    /* 22px */
+  --fs-2xl: 2rem;       /* 28px */
+  --fs-3xl: 2.571rem;   /* 36px */
+  --lh-tight: 1.25;
+  --lh-normal: 1.5;
+  --lh-relaxed: 1.75;
+  --fw-normal: 400;
+  --fw-medium: 500;
+  --fw-semibold: 600;
+  --fw-bold: 700;
+
+  /* ---- Spacing (4px base grid) ---- */
+  --sp-1: 4px;
+  --sp-2: 8px;
+  --sp-3: 12px;
+  --sp-4: 16px;
+  --sp-5: 20px;
+  --sp-6: 24px;
+  --sp-8: 32px;
+  --sp-10: 40px;
+  --sp-12: 48px;
+  --sp-16: 64px;
+
+  /* ---- Border Radius ---- */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+  --radius-full: 9999px;
+
+  /* ---- Shadows ---- */
+  --shadow-sm: 0 1px 2px rgba(0,0,0,0.05);
+  --shadow-md: 0 2px 8px rgba(0,0,0,0.08);
+  --shadow-lg: 0 4px 16px rgba(0,0,0,0.12);
+  --shadow-xl: 0 8px 32px rgba(0,0,0,0.16);
+
+  /* ---- Transitions ---- */
+  --transition-fast: 150ms ease;
+  --transition-normal: 250ms ease;
+
+  /* ---- Layout ---- */
+  --sidebar-width: 240px;
+  --header-height: 56px;
+  --container-max: 1200px;
+  --container-narrow: 720px;
+}
+
+
+/* ============================================================
+   BASE RESET
+   ============================================================ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body {
+  font-family: var(--font-family);
+  font-size: 14px;
+  line-height: var(--lh-normal);
+  color: var(--c-black);
+  background: var(--c-white);
+  -webkit-font-smoothing: antialiased;
+}
+
+a { color: inherit; text-decoration: none; }
+a:hover { color: var(--c-primary); }
+img { max-width: 100%; display: block; }
+ul, ol { list-style: none; }
+button { font: inherit; cursor: pointer; border: none; background: none; }
+input, select, textarea { font: inherit; }
+
+
+/* ============================================================
+   SPA PAGE ROUTING
+   All pages hidden by default. JS adds .active to show.
+   ============================================================ */
+.page { display: none; }
+.page.active { display: block; }
+
+
+/* ============================================================
+   TYPOGRAPHY
+   Heading sizes, body text, captions, links.
+   ============================================================ */
+h1 { font-size: var(--fs-3xl); font-weight: var(--fw-bold); line-height: var(--lh-tight); }
+h2 { font-size: var(--fs-2xl); font-weight: var(--fw-bold); line-height: var(--lh-tight); }
+h3 { font-size: var(--fs-xl); font-weight: var(--fw-semibold); line-height: var(--lh-tight); }
+h4 { font-size: var(--fs-lg); font-weight: var(--fw-semibold); line-height: var(--lh-tight); }
+h5 { font-size: var(--fs-md); font-weight: var(--fw-medium); }
+h6 { font-size: var(--fs-base); font-weight: var(--fw-medium); }
+
+.text-sm { font-size: var(--fs-sm); }
+.text-xs { font-size: var(--fs-xs); }
+.text-muted { color: var(--c-gray-500); }
+.text-center { text-align: center; }
+.text-right { text-align: right; }
+
+
+/* ============================================================
+   LAYOUT
+   Container, flex/grid helpers, sidebar+main pattern.
+   ============================================================ */
+
+/* Container */
+.container { max-width: var(--container-max); margin: 0 auto; padding: 0 var(--sp-6); }
+.container-narrow { max-width: var(--container-narrow); margin: 0 auto; padding: 0 var(--sp-6); }
+
+/* Flex helpers */
+.flex { display: flex; }
+.flex-col { flex-direction: column; }
+.flex-wrap { flex-wrap: wrap; }
+.items-center { align-items: center; }
+.items-start { align-items: flex-start; }
+.justify-between { justify-content: space-between; }
+.justify-center { justify-content: center; }
+.gap-1 { gap: var(--sp-1); }
+.gap-2 { gap: var(--sp-2); }
+.gap-3 { gap: var(--sp-3); }
+.gap-4 { gap: var(--sp-4); }
+.gap-6 { gap: var(--sp-6); }
+.gap-8 { gap: var(--sp-8); }
+
+/* Grid helpers */
+.grid { display: grid; gap: var(--sp-4); }
+.grid-2 { grid-template-columns: repeat(2, 1fr); }
+.grid-3 { grid-template-columns: repeat(3, 1fr); }
+.grid-4 { grid-template-columns: repeat(4, 1fr); }
+
+/* Sidebar + Main layout
+   Usage:
+   .page-layout
+     aside.sidebar ...
+     main.main-content ...
+*/
+.page-layout {
+  display: flex;
+  min-height: calc(100vh - var(--header-height));
+}
+.page-layout .main-content {
+  flex: 1;
+  padding: var(--sp-6);
+  overflow-y: auto;
+}
+
+/* Spacing utilities */
+.mt-2 { margin-top: var(--sp-2); }
+.mt-4 { margin-top: var(--sp-4); }
+.mt-6 { margin-top: var(--sp-6); }
+.mt-8 { margin-top: var(--sp-8); }
+.mb-2 { margin-bottom: var(--sp-2); }
+.mb-4 { margin-bottom: var(--sp-4); }
+.mb-6 { margin-bottom: var(--sp-6); }
+.p-2 { padding: var(--sp-2); }
+.p-4 { padding: var(--sp-4); }
+.p-6 { padding: var(--sp-6); }
+
+
+/* ============================================================
+   HEADER
+   Top navigation bar. Sticky by default.
+   ============================================================ */
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  height: var(--header-height);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 var(--sp-6);
+  background: var(--c-white);
+  border-bottom: 1px solid var(--c-gray-200);
+}
+
+.header .logo {
+  font-size: var(--fs-lg);
+  font-weight: var(--fw-bold);
+  color: var(--c-primary);
+}
+
+.header nav { display: flex; gap: var(--sp-4); align-items: center; }
+
+.header nav a {
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-medium);
+  color: var(--c-gray-500);
+  padding: var(--sp-2) var(--sp-3);
+  border-radius: var(--radius-md);
+  transition: color var(--transition-fast), background var(--transition-fast);
+}
+.header nav a:hover { color: var(--c-black); background: var(--c-gray-100); }
+.header nav a.active { color: var(--c-primary); background: var(--c-primary-light); }
+
+
+/* ============================================================
+   SIDEBAR
+   Vertical navigation for dashboard/portal pages.
+   ============================================================ */
+.sidebar {
+  width: var(--sidebar-width);
+  min-height: calc(100vh - var(--header-height));
+  padding: var(--sp-4);
+  background: var(--c-gray-50);
+  border-right: 1px solid var(--c-gray-200);
+  flex-shrink: 0;
+}
+
+.sidebar nav { display: flex; flex-direction: column; gap: var(--sp-1); }
+
+.sidebar nav a {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+  padding: var(--sp-2) var(--sp-3);
+  border-radius: var(--radius-md);
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-medium);
+  color: var(--c-gray-700);
+  transition: background var(--transition-fast), color var(--transition-fast);
+}
+.sidebar nav a:hover { background: var(--c-gray-200); color: var(--c-black); }
+.sidebar nav a.active { background: var(--c-primary-light); color: var(--c-primary); font-weight: var(--fw-semibold); }
+
+.sidebar nav a svg { width: 18px; height: 18px; flex-shrink: 0; }
+
+.sidebar-section { margin-top: var(--sp-6); }
+.sidebar-section-title {
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-semibold);
+  color: var(--c-gray-400);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 0 var(--sp-3);
+  margin-bottom: var(--sp-2);
+}
+
+
+/* ============================================================
+   BUTTONS
+   Primary, secondary, outline, ghost, danger variants.
+   Sizes: sm, default, lg.
+   ============================================================ */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--sp-2);
+  padding: var(--sp-2) var(--sp-4);
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-medium);
+  border-radius: var(--radius-md);
+  transition: all var(--transition-fast);
+  cursor: pointer;
+  border: 1px solid transparent;
+  white-space: nowrap;
+}
+
+.btn-primary { background: var(--c-primary); color: var(--c-white); }
+.btn-primary:hover { background: var(--c-primary-hover); color: var(--c-white); }
+
+.btn-secondary { background: var(--c-gray-100); color: var(--c-gray-700); border-color: var(--c-gray-300); }
+.btn-secondary:hover { background: var(--c-gray-200); color: var(--c-black); }
+
+.btn-outline { background: transparent; color: var(--c-primary); border-color: var(--c-primary); }
+.btn-outline:hover { background: var(--c-primary-light); }
+
+.btn-ghost { background: transparent; color: var(--c-gray-700); }
+.btn-ghost:hover { background: var(--c-gray-100); color: var(--c-black); }
+
+.btn-danger { background: var(--c-danger); color: var(--c-white); }
+.btn-danger:hover { background: #B91C1C; color: var(--c-white); }
+
+.btn-sm { padding: var(--sp-1) var(--sp-3); font-size: var(--fs-xs); }
+.btn-lg { padding: var(--sp-3) var(--sp-6); font-size: var(--fs-base); }
+
+.btn svg { width: 16px; height: 16px; }
+.btn-sm svg { width: 14px; height: 14px; }
+
+
+/* ============================================================
+   CARDS
+   Content containers with optional header, body, footer.
+   ============================================================ */
+.card {
+  background: var(--c-white);
+  border: 1px solid var(--c-gray-200);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+}
+
+.card-header {
+  padding: var(--sp-4) var(--sp-5);
+  border-bottom: 1px solid var(--c-gray-200);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.card-header h3 { font-size: var(--fs-md); }
+
+.card-body { padding: var(--sp-5); }
+
+.card-footer {
+  padding: var(--sp-3) var(--sp-5);
+  border-top: 1px solid var(--c-gray-200);
+  background: var(--c-gray-50);
+}
+
+/* Stat card — dashboard numbers */
+.stat-card { padding: var(--sp-5); }
+.stat-card .stat-label { font-size: var(--fs-sm); color: var(--c-gray-500); margin-bottom: var(--sp-1); }
+.stat-card .stat-value { font-size: var(--fs-2xl); font-weight: var(--fw-bold); }
+.stat-card .stat-change { font-size: var(--fs-xs); margin-top: var(--sp-1); }
+.stat-card .stat-change.up { color: var(--c-success); }
+.stat-card .stat-change.down { color: var(--c-danger); }
+
+
+/* ============================================================
+   BADGES
+   Status indicators, tags, labels.
+   ============================================================ */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-1);
+  padding: 2px var(--sp-2);
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-medium);
+  border-radius: var(--radius-full);
+  white-space: nowrap;
+}
+
+.badge-primary { background: var(--c-primary-light); color: var(--c-primary); }
+.badge-success { background: var(--c-success-light); color: var(--c-success); }
+.badge-warning { background: var(--c-warning-light); color: var(--c-warning); }
+.badge-danger { background: var(--c-danger-light); color: var(--c-danger); }
+.badge-info { background: var(--c-info-light); color: var(--c-info); }
+.badge-gray { background: var(--c-gray-100); color: var(--c-gray-700); }
+
+
+/* ============================================================
+   FORMS
+   Input, select, textarea, checkbox, radio, form groups.
+   ============================================================ */
+.form-group { margin-bottom: var(--sp-4); }
+
+.form-label {
+  display: block;
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-medium);
+  color: var(--c-gray-700);
+  margin-bottom: var(--sp-1);
+}
+
+.form-hint {
+  font-size: var(--fs-xs);
+  color: var(--c-gray-500);
+  margin-top: var(--sp-1);
+}
+
+.form-input,
+.form-select,
+.form-textarea {
+  width: 100%;
+  padding: var(--sp-2) var(--sp-3);
+  font-size: var(--fs-base);
+  border: 1px solid var(--c-gray-300);
+  border-radius: var(--radius-md);
+  background: var(--c-white);
+  color: var(--c-black);
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+.form-input:focus,
+.form-select:focus,
+.form-textarea:focus {
+  outline: none;
+  border-color: var(--c-primary);
+  box-shadow: 0 0 0 3px var(--c-primary-light);
+}
+.form-input::placeholder { color: var(--c-gray-400); }
+.form-textarea { resize: vertical; min-height: 80px; }
+
+.form-input.error { border-color: var(--c-danger); }
+.form-error { font-size: var(--fs-xs); color: var(--c-danger); margin-top: var(--sp-1); }
+
+/* Checkbox / Radio row */
+.form-check {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+  font-size: var(--fs-sm);
+  cursor: pointer;
+}
+.form-check input { width: 16px; height: 16px; accent-color: var(--c-primary); }
+
+
+/* ============================================================
+   TABLES
+   Striped, hoverable data tables.
+   ============================================================ */
+.table-wrapper { overflow-x: auto; }
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--fs-sm);
+}
+
+.table th {
+  text-align: left;
+  font-weight: var(--fw-semibold);
+  color: var(--c-gray-500);
+  font-size: var(--fs-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: var(--sp-3) var(--sp-4);
+  border-bottom: 2px solid var(--c-gray-200);
+}
+
+.table td {
+  padding: var(--sp-3) var(--sp-4);
+  border-bottom: 1px solid var(--c-gray-100);
+  vertical-align: middle;
+}
+
+.table tr:hover td { background: var(--c-gray-50); }
+
+
+/* ============================================================
+   LISTS
+   Action lists, menu items, activity feeds.
+   ============================================================ */
+.list-item {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+  padding: var(--sp-3) var(--sp-4);
+  border-bottom: 1px solid var(--c-gray-100);
+  transition: background var(--transition-fast);
+}
+.list-item:hover { background: var(--c-gray-50); }
+.list-item:last-child { border-bottom: none; }
+
+
+/* ============================================================
+   HERO SECTION
+   Landing page hero with title, subtitle, CTA buttons.
+   ============================================================ */
+.hero {
+  text-align: center;
+  padding: var(--sp-16) var(--sp-6);
+  background: linear-gradient(135deg, var(--c-primary-light), var(--c-white));
+}
+.hero h1 { margin-bottom: var(--sp-4); }
+.hero p { font-size: var(--fs-lg); color: var(--c-gray-500); max-width: 600px; margin: 0 auto var(--sp-6); }
+.hero .hero-actions { display: flex; gap: var(--sp-3); justify-content: center; }
+
+
+/* ============================================================
+   FOOTER
+   Simple footer with links.
+   ============================================================ */
+.footer {
+  padding: var(--sp-8) var(--sp-6);
+  text-align: center;
+  font-size: var(--fs-sm);
+  color: var(--c-gray-500);
+  border-top: 1px solid var(--c-gray-200);
+  margin-top: var(--sp-16);
+}
+
+
+/* ============================================================
+   MODAL / OVERLAY
+   Centered dialog on top of page content.
+   ============================================================ */
+.modal-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.4);
+  z-index: 200;
+  align-items: center;
+  justify-content: center;
+}
+.modal-overlay.active { display: flex; }
+
+.modal {
+  background: var(--c-white);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-xl);
+  width: 90%;
+  max-width: 500px;
+  max-height: 85vh;
+  overflow-y: auto;
+}
+
+.modal-header {
+  padding: var(--sp-4) var(--sp-5);
+  border-bottom: 1px solid var(--c-gray-200);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.modal-header h3 { font-size: var(--fs-md); }
+
+.modal-body { padding: var(--sp-5); }
+
+.modal-footer {
+  padding: var(--sp-3) var(--sp-5);
+  border-top: 1px solid var(--c-gray-200);
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--sp-2);
+}
+
+
+/* ============================================================
+   TOAST / NOTIFICATION
+   Floating notification at top-right.
+   ============================================================ */
+.toast {
+  position: fixed;
+  top: var(--sp-4);
+  right: var(--sp-4);
+  z-index: 300;
+  padding: var(--sp-3) var(--sp-4);
+  border-radius: var(--radius-md);
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-medium);
+  box-shadow: var(--shadow-lg);
+  display: none;
+  align-items: center;
+  gap: var(--sp-2);
+}
+.toast.active { display: flex; }
+.toast-success { background: var(--c-success); color: var(--c-white); }
+.toast-error { background: var(--c-danger); color: var(--c-white); }
+.toast-info { background: var(--c-info); color: var(--c-white); }
+
+
+/* ============================================================
+   AVATAR
+   User profile image placeholder.
+   ============================================================ */
+.avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-full);
+  background: var(--c-primary-light);
+  color: var(--c-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-semibold);
+  flex-shrink: 0;
+}
+.avatar-sm { width: 24px; height: 24px; font-size: 10px; }
+.avatar-lg { width: 48px; height: 48px; font-size: var(--fs-md); }
+
+
+/* ============================================================
+   TABS
+   Horizontal tab navigation.
+   ============================================================ */
+.tabs {
+  display: flex;
+  border-bottom: 2px solid var(--c-gray-200);
+  gap: 0;
+}
+
+.tab {
+  padding: var(--sp-3) var(--sp-4);
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-medium);
+  color: var(--c-gray-500);
+  border-bottom: 2px solid transparent;
+  margin-bottom: -2px;
+  cursor: pointer;
+  transition: color var(--transition-fast), border-color var(--transition-fast);
+}
+.tab:hover { color: var(--c-black); }
+.tab.active { color: var(--c-primary); border-bottom-color: var(--c-primary); }
+
+
+/* ============================================================
+   EMPTY STATE
+   Placeholder when no data is available.
+   ============================================================ */
+.empty-state {
+  text-align: center;
+  padding: var(--sp-12) var(--sp-6);
+  color: var(--c-gray-500);
+}
+.empty-state svg { width: 48px; height: 48px; margin: 0 auto var(--sp-4); opacity: 0.4; }
+.empty-state h3 { color: var(--c-gray-700); margin-bottom: var(--sp-2); }
+
+
+/* ============================================================
+   DIVIDER
+   Horizontal line with optional text.
+   ============================================================ */
+.divider {
+  border: none;
+  border-top: 1px solid var(--c-gray-200);
+  margin: var(--sp-6) 0;
+}
+
+
+/* ============================================================
+   RESPONSIVE
+   Collapse sidebar, stack grids on mobile.
+   ============================================================ */
+@media (max-width: 768px) {
+  .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
+
+  .page-layout { flex-direction: column; }
+  .sidebar {
+    width: 100%;
+    min-height: auto;
+    border-right: none;
+    border-bottom: 1px solid var(--c-gray-200);
+  }
+  .sidebar nav { flex-direction: row; overflow-x: auto; }
+
+  .hero { padding: var(--sp-10) var(--sp-4); }
+  .hero .hero-actions { flex-direction: column; align-items: center; }
+}
+
+    </style>
+  </head>
+  <body>
+    <div class="page" id="page-home">
+          <header class="header" id="header-public"><a class="logo" href="#home">MyApp</a>
+            <nav><a class="active" href="#home">Home</a><a href="#features">Features</a><a href="#pricing">Pricing</a></nav>
+            <div class="flex items-center gap-3"><a class="btn btn-ghost btn-sm" href="#login">Sign In</a><a class="btn btn-primary btn-sm" href="#signup">Get Started</a></div>
+          </header>
+      <section class="hero">
+        <h1>Build Something Amazing</h1>
+        <p>The fastest way to go from idea to clickable prototype. No frameworks, no servers — just Pug.</p>
+        <div class="hero-actions"><a class="btn btn-primary btn-lg" href="#signup">Get Started Free</a><a class="btn btn-outline btn-lg" href="#features">See Features</a></div>
+      </section>
+      <section class="container mt-8 mb-8">
+        <h2 class="text-center">Why Teams Love This</h2>
+        <p class="text-center text-muted mb-6">Everything you need to prototype faster.</p>
+        <div class="grid grid-3 gap-6">
+          <div class="card">
+            <div class="card-body">
+              <h4>Lightning Fast</h4>
+              <p class="text-muted mt-2">From idea to clickable prototype in minutes. No build tools, no config, no waiting.</p>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-body">
+              <h4>Self-Contained</h4>
+              <p class="text-muted mt-2">One HTML file. Works offline. Share with anyone — they just open it.</p>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-body">
+              <h4>Production-Ready Path</h4>
+              <p class="text-muted mt-2">60-70% of your CSS and structure transfers directly to React, Vue, or Next.js.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+          <footer class="footer">© 2026 MyApp. Built with <a href="https://pugjs.org" style="color: var(--c-primary)">Pug</a> + <a href="https://lucide.dev" style="color: var(--c-primary)">Lucide</a>.</footer>
+    </div>
+    <div class="page" id="page-dashboard">
+          <header class="header" id="header-logged"><a class="logo" href="#dashboard">MyApp</a>
+            <nav><a href="#dashboard">Dashboard</a><a href="#tasks">Tasks</a></nav>
+            <div class="flex items-center gap-3">
+              <div class="avatar">JD</div>
+            </div>
+          </header>
+      <div class="page-layout">
+            <aside class="sidebar">
+              <div class="sidebar-section">
+                <div class="sidebar-section-title">Overview</div>
+                <nav><a class="active" href="#dashboard"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg><span>Dashboard</span></a><a href="#tasks"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg><span>Tasks</span></a></nav>
+              </div>
+              <div class="sidebar-section">
+                <div class="sidebar-section-title">Account</div>
+                <nav><a href="#settings"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg><span>Settings</span></a></nav>
+              </div>
+            </aside>
+        <main class="main-content">
+          <div class="flex items-center justify-between mb-6">
+            <h2>Dashboard</h2><a class="btn btn-primary" href="#">+ New Task</a>
+          </div>
+          <div class="grid grid-4 gap-4 mb-6">
+            <div class="card stat-card">
+              <div class="stat-label">Total Tasks</div>
+              <div class="stat-value">142</div>
+              <div class="stat-change up">↑ 12% this week</div>
+            </div>
+            <div class="card stat-card">
+              <div class="stat-label">In Progress</div>
+              <div class="stat-value">38</div>
+              <div class="stat-change up">↑ 5%</div>
+            </div>
+            <div class="card stat-card">
+              <div class="stat-label">Completed</div>
+              <div class="stat-value">96</div>
+              <div class="stat-change up">↑ 8%</div>
+            </div>
+            <div class="card stat-card">
+              <div class="stat-label">Overdue</div>
+              <div class="stat-value">8</div>
+              <div class="stat-change down">↓ 2%</div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header">
+              <h3>Recent Activity</h3><a class="btn btn-sm btn-ghost" href="#tasks">View All</a>
+            </div>
+            <div class="card-body">
+              <div class="list-item">
+                <div class="avatar">JD</div>
+                <div class="flex-col">
+                  <p><strong>JD</strong> completed <strong>Design homepage</strong></p>
+                  <p class="text-xs text-muted">2 hours ago</p>
+                </div>
+              </div>
+              <div class="list-item">
+                <div class="avatar">AM</div>
+                <div class="flex-col">
+                  <p><strong>AM</strong> created <strong>Write API docs</strong></p>
+                  <p class="text-xs text-muted">4 hours ago</p>
+                </div>
+              </div>
+              <div class="list-item">
+                <div class="avatar">KL</div>
+                <div class="flex-col">
+                  <p><strong>KL</strong> commented on <strong>Fix login bug</strong></p>
+                  <p class="text-xs text-muted">Yesterday</p>
+                </div>
+              </div>
+              <div class="list-item">
+                <div class="avatar">TP</div>
+                <div class="flex-col">
+                  <p><strong>TP</strong> assigned <strong>Update pricing page</strong></p>
+                  <p class="text-xs text-muted">Yesterday</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </main>
+      </div>
+    </div>
+    <div class="page" id="page-tasks">
+          <header class="header" id="header-logged"><a class="logo" href="#dashboard">MyApp</a>
+            <nav><a href="#dashboard">Dashboard</a><a href="#tasks">Tasks</a></nav>
+            <div class="flex items-center gap-3">
+              <div class="avatar">JD</div>
+            </div>
+          </header>
+      <div class="page-layout">
+            <aside class="sidebar">
+              <div class="sidebar-section">
+                <div class="sidebar-section-title">Overview</div>
+                <nav><a href="#dashboard"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg><span>Dashboard</span></a><a class="active" href="#tasks"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg><span>Tasks</span></a></nav>
+              </div>
+              <div class="sidebar-section">
+                <div class="sidebar-section-title">Account</div>
+                <nav><a href="#settings"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg><span>Settings</span></a></nav>
+              </div>
+            </aside>
+        <main class="main-content">
+          <div class="flex items-center justify-between mb-6">
+            <h2>Tasks</h2><a class="btn btn-primary" href="#">+ New Task</a>
+          </div>
+          <div class="flex items-center gap-3 mb-4">
+            <select class="form-select" style="width: 160px">
+              <option>All Statuses</option>
+              <option>To Do</option>
+              <option>In Progress</option>
+              <option>Done</option>
+            </select>
+            <select class="form-select" style="width: 160px">
+              <option>All Priorities</option>
+              <option>High</option>
+              <option>Medium</option>
+              <option>Low</option>
+            </select>
+            <input class="form-input" type="text" placeholder="Search tasks..." style="width: 240px">
+          </div>
+          <div class="tabs mb-4"><a class="tab active">All (142)</a><a class="tab">In Progress (38)</a><a class="tab">Overdue (8)</a></div>
+          <div class="card">
+            <div class="table-wrapper">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th>Task</th>
+                    <th>Assignee</th>
+                    <th>Priority</th>
+                    <th>Status</th>
+                    <th>Date</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>Design homepage</strong></td>
+                    <td>
+                      <div class="avatar avatar-sm">JD</div>
+                    </td>
+                    <td><span class="badge badge-danger">high</span>
+                    </td>
+                    <td><span class="badge badge-success">done</span>
+                    </td>
+                    <td class="text-muted">Apr 2</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Write API docs</strong></td>
+                    <td>
+                      <div class="avatar avatar-sm">AM</div>
+                    </td>
+                    <td><span class="badge badge-warning">medium</span>
+                    </td>
+                    <td><span class="badge badge-info">in-progress</span>
+                    </td>
+                    <td class="text-muted">Apr 3</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Fix login bug</strong></td>
+                    <td>
+                      <div class="avatar avatar-sm">KL</div>
+                    </td>
+                    <td><span class="badge badge-danger">high</span>
+                    </td>
+                    <td><span class="badge badge-info">in-progress</span>
+                    </td>
+                    <td class="text-muted">Apr 4</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Update pricing page</strong></td>
+                    <td>
+                      <div class="avatar avatar-sm">TP</div>
+                    </td>
+                    <td><span class="badge badge-gray">low</span>
+                    </td>
+                    <td><span class="badge badge-gray">todo</span>
+                    </td>
+                    <td class="text-muted">Apr 5</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Setup CI/CD pipeline</strong></td>
+                    <td>
+                      <div class="avatar avatar-sm">JD</div>
+                    </td>
+                    <td><span class="badge badge-warning">medium</span>
+                    </td>
+                    <td><span class="badge badge-gray">todo</span>
+                    </td>
+                    <td class="text-muted">Apr 6</td>
+                  </tr>
+                  <tr>
+                    <td><strong>User testing round 2</strong></td>
+                    <td>
+                      <div class="avatar avatar-sm">AM</div>
+                    </td>
+                    <td><span class="badge badge-danger">high</span>
+                    </td>
+                    <td><span class="badge badge-danger">overdue</span>
+                    </td>
+                    <td class="text-muted">Mar 28</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </main>
+      </div>
+    </div>
+    <div class="page" id="page-settings">
+          <header class="header" id="header-logged"><a class="logo" href="#dashboard">MyApp</a>
+            <nav><a href="#dashboard">Dashboard</a><a href="#tasks">Tasks</a></nav>
+            <div class="flex items-center gap-3">
+              <div class="avatar">JD</div>
+            </div>
+          </header>
+      <div class="page-layout">
+            <aside class="sidebar">
+              <div class="sidebar-section">
+                <div class="sidebar-section-title">Overview</div>
+                <nav><a href="#dashboard"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg><span>Dashboard</span></a><a href="#tasks"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg><span>Tasks</span></a></nav>
+              </div>
+              <div class="sidebar-section">
+                <div class="sidebar-section-title">Account</div>
+                <nav><a class="active" href="#settings"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg><span>Settings</span></a></nav>
+              </div>
+            </aside>
+        <main class="main-content">
+          <h2 class="mb-6">Settings</h2>
+          <div class="tabs mb-6"><a class="tab active">Profile</a><a class="tab">Notifications</a><a class="tab">Team</a></div>
+          <div class="card">
+            <div class="card-header">
+              <h3>Profile Information</h3>
+            </div>
+            <div class="card-body">
+              <div class="grid grid-2 gap-4">
+                <div class="form-group">
+                  <label class="form-label" for="firstName">First Name</label>
+                  <input class="form-input" type="text" id="firstName" value="John">
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="lastName">Last Name</label>
+                  <input class="form-input" type="text" id="lastName" value="Doe">
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="settingsEmail">Email</label>
+                <input class="form-input" type="email" id="settingsEmail" value="john@example.com">
+                <div class="form-hint">This is the email used for notifications and login.</div>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="bio">Bio</label>
+                <textarea class="form-textarea" id="bio" rows="3">Product manager with 5 years of experience building SaaS tools.</textarea>
+              </div>
+            </div>
+            <div class="card-footer">
+              <div class="flex justify-between items-center"><span class="text-sm text-muted">Last updated 3 days ago</span>
+                <div class="flex gap-2">
+                  <button class="btn btn-secondary">Cancel</button>
+                  <button class="btn btn-primary">Save Changes</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card mt-6">
+            <div class="card-header">
+              <h3 style="color: var(--c-danger)">Danger Zone</h3>
+            </div>
+            <div class="card-body">
+              <div class="flex items-center justify-between">
+                <div class="flex-col"><strong>Delete Account</strong>
+                  <p class="text-sm text-muted">Permanently delete your account and all data. This cannot be undone.</p>
+                </div>
+                <button class="btn btn-danger">Delete Account</button>
+              </div>
+            </div>
+          </div>
+        </main>
+      </div>
+    </div>
+    <div class="page" id="page-login">
+      <div class="flex justify-center items-center" style="min-height: 100vh; background: var(--c-gray-50)">
+        <div class="card" style="width: 380px">
+          <div class="card-body">
+            <h3 class="text-center mb-2">Welcome Back</h3>
+            <p class="text-center text-muted mb-6">Sign in to your account</p>
+            <div class="form-group">
+              <label class="form-label" for="email">Email</label>
+              <input class="form-input" type="email" id="email" placeholder="you@example.com">
+            </div>
+            <div class="form-group">
+              <div class="flex justify-between items-center mb-1">
+                <label class="form-label" for="password" style="margin-bottom:0">Password</label><a class="text-xs" href="#" style="color: var(--c-primary)">Forgot password?</a>
+              </div>
+              <input class="form-input" type="password" id="password" placeholder="••••••••">
+            </div>
+            <div class="form-group">
+              <label class="form-check">
+                <input type="checkbox">Remember me
+              </label>
+            </div>
+            <button class="btn btn-primary" style="width: 100%">Sign In</button>
+            <div class="divider"></div>
+            <p class="text-center text-sm">
+              Don't have an account?
+               <a href="#register" style="color: var(--c-primary); font-weight: 500">Sign up</a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script>(function() {
+  var publicPages = ['home', 'login'];
+  var loggedPages = ['dashboard', 'tasks', 'settings'];
+  var allPages = publicPages.concat(loggedPages);
+
+  function navigate() {
+    var hash = location.hash.replace('#','') || 'home';
+    if (allPages.indexOf(hash) === -1) hash = 'home';
+    var isPublic = publicPages.indexOf(hash) !== -1;
+
+    // Hide all pages, show target
+    document.querySelectorAll('.page').forEach(function(p) {
+      p.classList.remove('active');
+    });
+    var target = document.getElementById('page-' + hash);
+    if (target) target.classList.add('active');
+
+    // Toggle public vs logged headers
+    var headerPublic = document.getElementById('header-public');
+    var headerLogged = document.getElementById('header-logged');
+    if (headerPublic) headerPublic.style.display = isPublic ? '' : 'none';
+    if (headerLogged) headerLogged.style.display = isPublic ? 'none' : '';
+
+    // Update sidebar active state
+    document.querySelectorAll('.sidebar nav a').forEach(function(a) {
+      var linkHash = a.getAttribute('href').replace('#','');
+      a.classList.toggle('active', linkHash === hash);
+    });
+
+    // Scroll to top
+    window.scrollTo(0, 0);
+  }
+
+  window.addEventListener('hashchange', navigate);
+  window.addEventListener('DOMContentLoaded', navigate);
+})();
+
+    </script>
+  </body>
+</html>

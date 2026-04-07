@@ -1,0 +1,58 @@
+//- ============================================================
+//- PAGE: Settings (Authenticated)
+//- Route: #settings
+//- ============================================================
+
+.page#page-settings
+  +headerLogged()
+  .page-layout
+    +sidebar('settings')
+    main.main-content
+
+      h2.mb-6 Settings
+
+      //- Tabs
+      .tabs.mb-6
+        a.tab.active Profile
+        a.tab Notifications
+        a.tab Team
+
+      //- Profile form
+      .card
+        .card-header
+          h3 Profile Information
+        .card-body
+          .grid.grid-2.gap-4
+            .form-group
+              label.form-label(for="firstName") First Name
+              input.form-input(type="text" id="firstName" value="John")
+            .form-group
+              label.form-label(for="lastName") Last Name
+              input.form-input(type="text" id="lastName" value="Doe")
+
+          .form-group
+            label.form-label(for="settingsEmail") Email
+            input.form-input(type="email" id="settingsEmail" value="john@example.com")
+            .form-hint This is the email used for notifications and login.
+
+          .form-group
+            label.form-label(for="bio") Bio
+            textarea.form-textarea(id="bio" rows="3") Product manager with 5 years of experience building SaaS tools.
+
+        .card-footer
+          .flex.justify-between.items-center
+            span.text-sm.text-muted Last updated 3 days ago
+            .flex.gap-2
+              button.btn.btn-secondary Cancel
+              button.btn.btn-primary Save Changes
+
+      //- Danger zone
+      .card.mt-6
+        .card-header
+          h3(style="color: var(--c-danger)") Danger Zone
+        .card-body
+          .flex.items-center.justify-between
+            .flex-col
+              strong Delete Account
+              p.text-sm.text-muted Permanently delete your account and all data. This cannot be undone.
+            button.btn.btn-danger Delete Account

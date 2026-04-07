@@ -1,0 +1,19 @@
+//- ============================================================
+//- COMPONENT: Sidebar
+//- Vertical navigation for dashboard/portal pages.
+//- Usage: +sidebar('dashboard') — pass active page name.
+//- ============================================================
+
+mixin sidebar(activePage)
+  aside.sidebar
+    .sidebar-section
+      .sidebar-section-title Main
+      nav
+        a(href="#dashboard" class={active: activePage === 'dashboard'})
+          //- Lucide icon inline (optional): paste SVG from https://lucide.dev
+          span Dashboard
+        //- Add more links:
+        //- a(href="#tasks" class={active: activePage === 'tasks'})
+        //-   span Tasks
+        //- a(href="#settings" class={active: activePage === 'settings'})
+        //-   span Settings

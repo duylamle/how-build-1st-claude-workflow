@@ -1,0 +1,53 @@
+//- ============================================================
+//- PAGE: Dashboard (Authenticated)
+//- Route: #dashboard
+//- ============================================================
+
+.page#page-dashboard
+  +headerLogged()
+  .page-layout
+    +sidebar('dashboard')
+    main.main-content
+
+      .flex.items-center.justify-between.mb-6
+        h2 Dashboard
+        a.btn.btn-primary(href="#") + New Task
+
+      .grid.grid-4.gap-4.mb-6
+        .card.stat-card
+          .stat-label Total Tasks
+          .stat-value 142
+          .stat-change.up ↑ 12% this week
+        .card.stat-card
+          .stat-label In Progress
+          .stat-value 38
+          .stat-change.up ↑ 5%
+        .card.stat-card
+          .stat-label Completed
+          .stat-value 96
+          .stat-change.up ↑ 8%
+        .card.stat-card
+          .stat-label Overdue
+          .stat-value 8
+          .stat-change.down ↓ 2%
+
+      .card
+        .card-header
+          h3 Recent Activity
+          a.btn.btn-sm.btn-ghost(href="#tasks") View All
+        .card-body
+          -
+            var activities = [
+              {user: 'JD', action: 'completed', target: 'Design homepage', time: '2 hours ago'},
+              {user: 'AM', action: 'created', target: 'Write API docs', time: '4 hours ago'},
+              {user: 'KL', action: 'commented on', target: 'Fix login bug', time: 'Yesterday'},
+              {user: 'TP', action: 'assigned', target: 'Update pricing page', time: 'Yesterday'}
+            ]
+          each activity in activities
+            .list-item
+              .avatar= activity.user
+              .flex-col
+                p
+                  strong= activity.user
+                  |  #{activity.action} #[strong= activity.target]
+                p.text-xs.text-muted= activity.time

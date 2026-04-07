@@ -1,0 +1,70 @@
+//- ============================================================
+//- PAGE: Tasks (Authenticated)
+//- Route: #tasks
+//- ============================================================
+
+.page#page-tasks
+  +headerLogged()
+  .page-layout
+    +sidebar('tasks')
+    main.main-content
+
+      .flex.items-center.justify-between.mb-6
+        h2 Tasks
+        a.btn.btn-primary(href="#") + New Task
+
+      //- Filters
+      .flex.items-center.gap-3.mb-4
+        select.form-select(style="width: 160px")
+          option All Statuses
+          option To Do
+          option In Progress
+          option Done
+        select.form-select(style="width: 160px")
+          option All Priorities
+          option High
+          option Medium
+          option Low
+        input.form-input(type="text" placeholder="Search tasks..." style="width: 240px")
+
+      //- Tabs
+      .tabs.mb-4
+        a.tab.active All (142)
+        a.tab In Progress (38)
+        a.tab Overdue (8)
+
+      //- Task table
+      -
+        var tasks = [
+          {id: 1, title: 'Design homepage', assignee: 'JD', priority: 'high', status: 'done', date: 'Apr 2'},
+          {id: 2, title: 'Write API docs', assignee: 'AM', priority: 'medium', status: 'in-progress', date: 'Apr 3'},
+          {id: 3, title: 'Fix login bug', assignee: 'KL', priority: 'high', status: 'in-progress', date: 'Apr 4'},
+          {id: 4, title: 'Update pricing page', assignee: 'TP', priority: 'low', status: 'todo', date: 'Apr 5'},
+          {id: 5, title: 'Setup CI/CD pipeline', assignee: 'JD', priority: 'medium', status: 'todo', date: 'Apr 6'},
+          {id: 6, title: 'User testing round 2', assignee: 'AM', priority: 'high', status: 'overdue', date: 'Mar 28'}
+        ]
+
+      .card
+        .table-wrapper
+          table.table
+            thead
+              tr
+                th Task
+                th Assignee
+                th Priority
+                th Status
+                th Date
+            tbody
+              each task in tasks
+                tr
+                  td
+                    strong= task.title
+                  td
+                    .avatar.avatar-sm= task.assignee
+                  td
+                    - var prioColor = task.priority === 'high' ? 'danger' : (task.priority === 'medium' ? 'warning' : 'gray')
+                    span.badge(class='badge-' + prioColor)= task.priority
+                  td
+                    - var statusColor = task.status === 'done' ? 'success' : (task.status === 'overdue' ? 'danger' : (task.status === 'in-progress' ? 'info' : 'gray'))
+                    span.badge(class='badge-' + statusColor)= task.status
+                  td.text-muted= task.date

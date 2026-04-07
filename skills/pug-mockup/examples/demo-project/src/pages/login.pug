@@ -1,0 +1,38 @@
+//- ============================================================
+//- PAGE: Login (Standalone)
+//- Route: #login
+//- Layout: centered card — no header, no sidebar
+//- ============================================================
+
+- var formWidth = '380px'
+
+.page#page-login
+  .flex.justify-center.items-center(style="min-height: 100vh; background: var(--c-gray-50)")
+    .card(style="width: " + formWidth)
+      .card-body
+        h3.text-center.mb-2 Welcome Back
+        p.text-center.text-muted.mb-6 Sign in to your account
+
+        //- Login form
+        .form-group
+          label.form-label(for="email") Email
+          input.form-input(type="email" id="email" placeholder="you@example.com")
+
+        .form-group
+          .flex.justify-between.items-center.mb-1
+            label.form-label(for="password" style="margin-bottom:0") Password
+            a.text-xs(href="#" style="color: var(--c-primary)") Forgot password?
+          input.form-input(type="password" id="password" placeholder="••••••••")
+
+        .form-group
+          label.form-check
+            input(type="checkbox")
+            | Remember me
+
+        button.btn.btn-primary(style="width: 100%") Sign In
+
+        .divider
+
+        p.text-center.text-sm
+          | Don't have an account?
+          |  #[a(href="#register" style="color: var(--c-primary); font-weight: 500") Sign up]

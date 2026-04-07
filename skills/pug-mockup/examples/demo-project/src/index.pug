@@ -1,0 +1,25 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport" content="width=device-width, initial-scale=1.0")
+    meta(name="color-scheme" content="light")
+    title MyApp Demo
+    style
+      include css/main.css
+  body
+    //- Components (mixins — must be included before pages that use them)
+    include components/header.pug
+    include components/sidebar.pug
+    include components/footer.pug
+
+    //- Pages (5 demo pages)
+    include pages/home.pug
+    include pages/dashboard.pug
+    include pages/tasks.pug
+    include pages/settings.pug
+    include pages/login.pug
+
+    //- JS
+    script
+      include js/main.js

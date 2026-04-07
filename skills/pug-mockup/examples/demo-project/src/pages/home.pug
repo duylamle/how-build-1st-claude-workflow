@@ -1,0 +1,34 @@
+//- ============================================================
+//- PAGE: Home (Landing — public)
+//- Route: #home (default)
+//- ============================================================
+
+.page#page-home
+  +headerPublic('home')
+
+  section.hero
+    h1 Build Something Amazing
+    p The fastest way to go from idea to clickable prototype. No frameworks, no servers — just Pug.
+    .hero-actions
+      a.btn.btn-primary.btn-lg(href="#signup") Get Started Free
+      a.btn.btn-outline.btn-lg(href="#features") See Features
+
+  section.container.mt-8.mb-8
+    h2.text-center Why Teams Love This
+    p.text-center.text-muted.mb-6 Everything you need to prototype faster.
+
+    .grid.grid-3.gap-6
+      .card
+        .card-body
+          h4 Lightning Fast
+          p.text-muted.mt-2 From idea to clickable prototype in minutes. No build tools, no config, no waiting.
+      .card
+        .card-body
+          h4 Self-Contained
+          p.text-muted.mt-2 One HTML file. Works offline. Share with anyone — they just open it.
+      .card
+        .card-body
+          h4 Production-Ready Path
+          p.text-muted.mt-2 60-70% of your CSS and structure transfers directly to React, Vue, or Next.js.
+
+  +footer()

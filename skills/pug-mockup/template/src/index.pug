@@ -1,0 +1,43 @@
+//- ============================================================
+//- INDEX.PUG — Entry Point
+//-
+//- This is the ONLY file the build command reads.
+//- It pulls everything together: CSS, components, pages, JS.
+//- Build: npm run build → compiles this into dist/index.html
+//-
+//- ORDER MATTERS:
+//- 1. CSS (inlined into <style>)
+//- 2. Components (define mixins BEFORE pages that use them)
+//- 3. Pages (use mixins defined above)
+//- 4. JS (inlined into <script>)
+//-
+//- To add a new page:
+//- 1. Create src/pages/your-page.pug
+//- 2. Uncomment or add: include pages/your-page.pug
+//- 3. Register page ID in src/js/main.js
+//- ============================================================
+
+doctype html
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport" content="width=device-width, initial-scale=1.0")
+    meta(name="color-scheme" content="light")
+    title My App
+    style
+      include css/main.css
+  body
+    //- ---- Components (uncomment as you create them) ----
+    include components/header.pug
+    include components/sidebar.pug
+    include components/footer.pug
+
+    //- ---- Pages (3 starter examples — edit or replace) ----
+    include pages/home.pug
+    include pages/dashboard.pug
+    include pages/login.pug
+    //- include pages/your-page.pug
+
+    //- ---- JS (SPA router + interactions) ----
+    script
+      include js/main.js

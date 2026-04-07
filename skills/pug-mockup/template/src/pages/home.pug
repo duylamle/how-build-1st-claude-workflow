@@ -1,0 +1,41 @@
+//- ============================================================
+//- PAGE: Home (Example — Landing Page)
+//- Route: #home (default page)
+//- Layout: standalone — public header, hero, features, footer
+//-
+//- This is a starter example. Edit or replace entirely.
+//- ============================================================
+
+.page#page-home
+  +header('home')
+
+  //- --- Hero Section ---
+  section.hero
+    h1 Your Headline Here
+    p Describe your product's value in one sentence.
+    .hero-actions
+      a.btn.btn-primary.btn-lg(href="#signup") Get Started
+      a.btn.btn-outline.btn-lg(href="#features") Learn More
+
+  //- --- Features Section ---
+  section.container.mt-8.mb-8
+    h2.text-center Features
+    p.text-center.text-muted.mb-6 What makes your product special.
+
+    .grid.grid-3.gap-6
+      .card
+        .card-body
+          h4 Feature One
+          p.text-muted.mt-2 Brief description of this feature.
+
+      .card
+        .card-body
+          h4 Feature Two
+          p.text-muted.mt-2 Brief description of this feature.
+
+      .card
+        .card-body
+          h4 Feature Three
+          p.text-muted.mt-2 Brief description of this feature.
+
+  +footer()

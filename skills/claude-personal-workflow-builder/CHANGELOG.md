@@ -1,5 +1,10 @@
 # Changelog — claude-personal-workflow-builder
 
+## v1.1.1 (2026-04-08)
+
+### Added
+- CLAUDE.md — project map with structure, phases table, key files reference
+
 ## v1.1.0 (2026-04-07)
 
 ### Added

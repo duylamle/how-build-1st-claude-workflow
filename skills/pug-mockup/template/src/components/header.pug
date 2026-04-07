@@ -1,0 +1,17 @@
+//- ============================================================
+//- COMPONENT: Header
+//- Sticky top navigation bar.
+//- Usage: +header('home') — pass active page name to highlight nav link.
+//- ============================================================
+
+mixin header(activePage)
+  header.header
+    a.logo(href="#home") My App
+    nav
+      a(href="#home" class={active: activePage === 'home'}) Home
+      //- Add more nav links here:
+      //- a(href="#about" class={active: activePage === 'about'}) About
+      //- a(href="#pricing" class={active: activePage === 'pricing'}) Pricing
+    .flex.items-center.gap-3
+      //- Right side: CTA button, avatar, etc.
+      a.btn.btn-primary.btn-sm(href="#signup") Sign Up

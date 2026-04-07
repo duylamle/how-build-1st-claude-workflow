@@ -1,0 +1,11 @@
+{
+  "name": "pug-mockup-project",
+  "private": true,
+  "scripts": {
+    "build": "pug src/index.pug -o dist -P",
+    "watch": "pug src/index.pug -o dist -P -w"
+  },
+  "devDependencies": {
+    "pug-cli": "^1.0.0-alpha6"
+  }
+}

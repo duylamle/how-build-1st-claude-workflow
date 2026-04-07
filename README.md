@@ -54,6 +54,22 @@ An interactive guide to build, maintain, and grow your AI Personal System with C
 npx skills add duylamle/product-collection@claude-personal-workflow-builder -y
 ```
 
+### 2. Pug Mockup
+
+[![View Skill — v1.0.0](https://img.shields.io/badge/View_Skill-v1.0.0-orange)](skills/pug-mockup/)
+
+Generate self-contained SPA mockups using Pug template engine + Lucide SVG icons. Single HTML output — works offline, share with anyone.
+
+**Why Pug for AI mockups:**
+- ~40-50% fewer tokens than HTML — AI writes more UI in less context
+- Mixin = component reuse without frameworks
+- Self-contained output — CSS/JS inlined, no server needed
+- Not a dead-end — ~60-70% reusable in React/Next.js/Vue
+
+```bash
+npx skills add duylamle/product-collection@pug-mockup -y
+```
+
 > More skills coming. Each is self-contained with its own guide, templates, and examples.
 
 ---

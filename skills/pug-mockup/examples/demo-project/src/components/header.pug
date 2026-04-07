@@ -1,0 +1,23 @@
+//- ============================================================
+//- COMPONENT: Header (Demo — 2 variants: public + logged)
+//- ============================================================
+
+mixin headerPublic(activePage)
+  header.header#header-public
+    a.logo(href="#home") MyApp
+    nav
+      a(href="#home" class={active: activePage === 'home'}) Home
+      a(href="#features" class={active: activePage === 'features'}) Features
+      a(href="#pricing" class={active: activePage === 'pricing'}) Pricing
+    .flex.items-center.gap-3
+      a.btn.btn-ghost.btn-sm(href="#login") Sign In
+      a.btn.btn-primary.btn-sm(href="#signup") Get Started
+
+mixin headerLogged()
+  header.header#header-logged
+    a.logo(href="#dashboard") MyApp
+    nav
+      a(href="#dashboard") Dashboard
+      a(href="#tasks") Tasks
+    .flex.items-center.gap-3
+      .avatar JD
