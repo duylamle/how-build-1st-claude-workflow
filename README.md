@@ -5,7 +5,7 @@
 **Claude Code skills for people who build products.**
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
-[![Version](https://img.shields.io/badge/version-v1.1.0-orange)](CHANGELOG.md)
+[![Version](https://img.shields.io/badge/version-v0.2.1-orange)](CHANGELOG.md)
 [![skills.sh](https://img.shields.io/badge/skills.sh-compatible-brightgreen)](https://skills.sh/duylamle/product-collection)
 [![Made with Claude Code](https://img.shields.io/badge/Made_with-Claude_Code-blueviolet?logo=anthropic)](https://claude.ai/claude-code)
 [![Last Commit](https://img.shields.io/github/last-commit/duylamle/product-collection)](https://github.com/duylamle/product-collection)
@@ -40,7 +40,7 @@ This installs all skills in the collection. See each skill below for usage instr
 
 ### 1. Claude Personal Workflow Builder
 
-[![View Skill — v1.1.0](https://img.shields.io/badge/View_Skill-v1.1.0-orange)](skills/claude-personal-workflow-builder/)
+[![View Skill — v1.1.1](https://img.shields.io/badge/View_Skill-v1.1.1-orange)](skills/claude-personal-workflow-builder/)
 
 An interactive guide to build, maintain, and grow your AI Personal System with Claude Code — specialized agents, behavioral rules, bounded skills, memory, hooks. 13 phases from zero to a working system.
 

@@ -33,6 +33,11 @@ skills/
     └── examples/     ← Walkthrough examples
 ```
 
+## Versioning
+
+- Repo: `0.Y.Z` — Y = number of skills, Z = patch (docs/badges)
+- Skills: independent semver — X (multi-folder change), Y (single folder), Z (single file)
+
 ## About
 
 Built by Lê Trương Duy Lam — Technical Product Owner at VNG Corporation.
