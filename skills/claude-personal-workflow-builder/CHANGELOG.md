@@ -1,5 +1,21 @@
 # Changelog — claude-personal-workflow-builder
 
+## v2.0.0 (2026-04-10)
+
+### Added
+- **Consult mode** — direct Q&A for users who want advice, not step-by-step walkthrough
+- **3 Modules Framework** (Context/Prompts/Tools) — big picture before phases detail (guide/01-intro.md)
+- **Agent vs Skill concept** — WHO/WHY vs HOW/WHAT distinction (guide/01-intro.md)
+- **Flexible reading order** — phases are modules you pick based on needs, not sequential steps (guide/01-intro.md)
+- **Claude Code comparison table** — CLI vs Desktop vs VS Code vs Web (guide/00-prerequisites.md)
+- **Pain points → rules examples** — "thing AI does wrong → opposite behavior as rule" pattern (guide/04-rules.md)
+- **PO setup example** — complete Product Owner system with PO, Challenger, Secretary agents (examples/po-setup.md)
+- **References folder** with 4 research files:
+  - `engineering-workflows.md` — Addy Osmani's Agent Skills repo for dev-focused systems
+  - `knowledge-management-and-rag.md` — Graphify + GraphRAG + 8 RAG Architectures
+  - `prompt-framing.md` — Anthropic's emotion concepts research, why calm prompts work
+  - `agent-platform-mapping.md` — enterprise AI platform components vs personal equivalents
+
 ## v1.1.1 (2026-04-08)
 
 ### Added

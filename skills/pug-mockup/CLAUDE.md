@@ -22,6 +22,7 @@ pug-mockup/
 ├── SKILL.md                    ← Skill definition (start here)
 ├── CLAUDE.md                   ← This file
 ├── guide/
+│   ├── 0-nontech-workflow.md   ← Start here if non-technical
 │   ├── 1-pug-syntax.md         ← Pug language reference
 │   ├── 2-ideal-workflow.md     ← Full 5-stage workflow
 │   ├── 3-input-spec.md         ← Input format from companion skills

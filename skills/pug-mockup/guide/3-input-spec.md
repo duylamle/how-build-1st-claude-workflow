@@ -35,6 +35,26 @@ settings, login. Use blue primary color. Sidebar layout for logged-in pages.
 
 **Result:** Functional mockup with AI-chosen design decisions.
 
+**More example prompts to try:**
+
+```
+Create a landing page for a SaaS product called "FlowSync" — hero section
+with headline + CTA, 3 feature cards with icons, pricing table (3 tiers),
+testimonials section, footer with links. Style: clean like Linear, dark mode.
+```
+
+```
+Build an admin dashboard for an e-commerce store. Pages: overview (revenue
+chart placeholder, order stats, top products table), orders list (filterable
+by status), customer list, settings. Sidebar nav. Light theme, green primary.
+```
+
+```
+Create a portfolio website with 4 sections: hero with name + tagline,
+projects grid (6 cards with thumbnails), about me, contact form. Single page,
+top nav that scrolls to sections. Minimal, lots of whitespace, dark accent color.
+```
+
 ### Tier 2: Design Brief (recommended)
 
 Add structure to your description. Covers the major design decisions.

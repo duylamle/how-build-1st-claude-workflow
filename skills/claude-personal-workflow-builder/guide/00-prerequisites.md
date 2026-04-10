@@ -44,10 +44,24 @@ The web interface at claude.ai works for basic conversations but lacks the file 
 
 ### Which option should you choose?
 
-- If you're comfortable with terminals: **Option A** (npm)
-- If you want a visual interface: **Option B** (desktop app)
-- If you live in VS Code: **Option C** (extension)
-- You can switch between them freely — they all read the same CLAUDE.md files and `.claude/` folder
+| Your situation | Best option | Why |
+|---|---|---|
+| Comfortable with terminals | **A — npm CLI** | Fastest, scriptable, works in any terminal |
+| Want a visual interface | **B — Desktop app** | Dedicated window, same capabilities as CLI |
+| Live in VS Code | **C — VS Code extension** | See files + run Claude + review output in one window |
+| Just exploring / not ready to install | **D — Web app** | Try it out, but you cannot build a system on it |
+
+**Key differences:**
+
+| Feature | CLI (A) | Desktop (B) | VS Code (C) | Web (D) |
+|---|---|---|---|---|
+| Read/write your files | Yes | Yes | Yes | No |
+| Spawn subagents | Yes | Yes | Yes | No |
+| Use hooks (automation) | Yes | Yes | Yes | No |
+| Read CLAUDE.md automatically | Yes | Yes | Yes | No |
+| Requires installation | npm | Download | Extension | None |
+
+All installed options (A, B, C) read the same CLAUDE.md files and `.claude/` folder — you can switch between them freely. Your system works the same regardless of which interface you use.
 
 ---
 

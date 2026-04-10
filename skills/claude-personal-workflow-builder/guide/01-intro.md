@@ -74,6 +74,59 @@ This also means the skills that make you effective shift. Writing detailed step-
 
 ---
 
+## The 3 Modules — Big Picture Before Details
+
+Before diving into the 13 phases, understand the three modules that make up any AI personal system. Everything you build falls into one of these:
+
+| Module | What it is | What you'll build | Files |
+|---|---|---|---|
+| **Context** | What AI knows about you and your domain | CLAUDE.md, knowledge files, memory entries | `CLAUDE.md`, `knowledge/`, `memory/` |
+| **Prompts** | How AI behaves and what it produces | Rules (behavioral guardrails), skills (structured procedures), agent personas | `.claude/rules/`, `.claude/skills/`, `.claude/agents/` |
+| **Tools** | What AI can do beyond thinking | Hooks (automated scripts), Python helpers, external integrations | `.claude/hooks/`, `.claude/scripts/` |
+
+**Context** answers "who am I working with and what do I need to know?"
+**Prompts** answer "how should I behave and what should I produce?"
+**Tools** answer "what actions can I take in the real world?"
+
+When you want to change something about your system, the module tells you where to look:
+
+| You want to... | Module | You'll edit... |
+|---|---|---|
+| Change how AI talks to you | Prompts | `rules/rule-communication.md` |
+| Add info about your company | Context | `knowledge/company/` |
+| Make AI remember a correction | Context | `memory/` |
+| Create a new document type | Prompts | `skills/[new-skill]/SKILL.md` + template |
+| Auto-check files after writing | Tools | `hooks/` + `settings.local.json` |
+| Add a new AI specialist role | Prompts | `agents/[new-agent]/AGENT.md` |
+| Store lessons from past sessions | Context | `memory/[feedback-entry]/` |
+
+The 13 phases build these modules incrementally. Phases 0-3 set up Context, Phases 4-6 build Prompts, Phases 7-8 add Tools and more Context, and Phases 9-12 teach you to optimize all three.
+
+---
+
+## Agent vs Skill — WHO/WHY vs HOW/WHAT
+
+Two concepts that people often confuse. Here's the distinction:
+
+**Agent = WHO does the work + WHY they approach it that way**
+An agent is a persona with a specific role, worldview, and boundaries. A Producer agent creates documents with a "produce drafts, human decides" mindset. A Reviewer agent finds weaknesses with a "read cold, be critical" mindset. Same task (read a document), completely different approaches because the WHO is different.
+
+**Skill = HOW to do a specific task + WHAT to produce**
+A skill is a structured procedure: input → process → output. "Write a spec" is a skill. "Challenge a document" is a skill. Skills are recipes — they define ingredients (input), steps (process), and plating (output template).
+
+**The relationship:** An agent owns multiple skills. The agent's persona shapes HOW it executes each skill. A Producer with a "write-spec" skill produces documents following the spec template. A Reviewer with a "challenge" skill reads documents and produces findings reports.
+
+| | Agent | Skill |
+|---|---|---|
+| Defined in | `AGENT.md` | `SKILL.md` |
+| Contains | Persona, principles, constraints, tool permissions | Input, output, constraints, template pointers |
+| Changes when | You need a new specialist role | You need a new type of output |
+| Example | "Producer — creates all written artifacts" | "write-spec — produces feature specifications" |
+
+Think of it this way: you hire agents (WHO), then assign them skills (HOW). You don't create a new agent for every task — you give existing agents new skills.
+
+---
+
 ## Architecture Overview
 
 Here's the full picture of what you'll build:
@@ -196,9 +249,35 @@ The full guide has phases 0 through 6+. If you want to get running fast, here's 
 | **5 — Agents** | Create 2 agents (producer + reviewer) | 30 min | Write AGENT.md files that give AI specialized roles with clear boundaries | Required |
 | **6 — Skills** | Create 3 skills (think, produce, challenge) | 45 min | Create structured procedures with templates so AI produces consistent output | Required |
 
-**Minimum viable path: 0 -> 1 -> 3 -> 4 -> 5 -> 6** (about 3 hours total).
+**Minimum viable path: 0 → 1 → 3 → pick what you need** (see below).
 
 Phase 2 (self-assessment) is valuable but you can do it informally — just know your 2-3 biggest pain points before starting Phase 3.
+
+> **Phases are not sequential.** The numbers are for reference, not a mandatory order. After the foundation (0 → 1 → 3), pick phases based on what you actually need — you might only need skills (6), or rules + skills (4 + 6), or the full stack. See the "Flexible Reading Order" section below.
+
+---
+
+## Flexible Reading Order
+
+After completing the foundation (Phases 0, 1, 3), the remaining phases are **modules you pick based on your needs**, not a fixed sequence.
+
+### Common paths
+
+| Your situation | Path | Time |
+|---|---|---|
+| "I just want AI to follow a procedure consistently" | 0 → 1 → 3 → **6 (Skills)** | ~1.5 hours |
+| "I want consistent behavior + one procedure" | 0 → 1 → 3 → **4 (Rules)** → **6 (Skills)** | ~2 hours |
+| "I want a full system with specialized roles" | 0 → 1 → 3 → 4 → **6 (Skills)** → **5 (Agents)** → 7 | ~3 hours |
+| "I want AI to learn from my corrections" | 0 → 1 → 3 → **7 (Memory)** | ~1.5 hours |
+| "I want automated quality checks" | 0 → 1 → 3 → 4 → **8 (Hooks)** | ~2 hours |
+| "I already have a system, I want to level up" | **9-12** (pick what's relevant) | varies |
+
+### Reading order tips
+
+- **Skills (6) before Agents (5):** Create skills first, then assign them to agents. You need to know what your agents will do before defining their roles.
+- **Memory (7) pairs with Foundation (3):** Memory is part of the Context module — if you care about AI remembering your corrections, read it right after setting up your workspace.
+- **Hooks (8) after Rules (4):** Hooks automate rule enforcement. Write rules first, then automate them.
+- **Phases 9-12 are independent:** Advanced patterns, skill absorption, tuning, and scaling can be read in any order when you're ready.
 
 ---
 

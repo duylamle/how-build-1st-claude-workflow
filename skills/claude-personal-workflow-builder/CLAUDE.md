@@ -7,9 +7,10 @@
 
 Say **"build my AI workflow"** or **"guide me through setting up my AI system"**.
 
-**Two modes:**
+**Three modes:**
 - **Guided** (default) — walk through phases sequentially, I ask for your input at each step
 - **Menu** — say "show me the phases" to jump to any specific phase
+- **Consult** — say "I have a question" for direct Q&A, no walkthrough
 
 ## Structure
 
@@ -43,7 +44,13 @@ claude-personal-workflow-builder/
 │   ├── rule-coordination.md
 │   ├── memory-index.md
 │   └── hook-validate-example.py
-└── examples/                 ← Complete setups for 3 roles
+├── references/               ← External research + context
+│   ├── engineering-workflows.md
+│   ├── knowledge-management-and-rag.md
+│   ├── prompt-framing.md
+│   └── agent-platform-mapping.md
+└── examples/                 ← Complete setups for 4 roles
+    ├── po-setup.md
     ├── marketer-setup.md
     ├── developer-setup.md
     └── manager-setup.md
@@ -57,6 +64,7 @@ claude-personal-workflow-builder/
 | Specific phase content | `guide/[NN]-[phase].md` |
 | Starter templates to customize | `templates/` |
 | Real-world setup examples | `examples/` |
+| External research + context | `references/` |
 | Common issues | `guide/13-troubleshooting.md` |
 
 ## Phases (reading order)
@@ -77,8 +85,8 @@ claude-personal-workflow-builder/
 | 11 | [Tuning](guide/11-tuning.md) | Escalation ladder for improving output |
 | 12 | [Iterate & Grow](guide/12-iterate-grow.md) | Monthly review, publishing, scaling |
 
-**Quick start:** Phases 0 → 1 → 3 → 4 → 5 → 6 get a working system.
-Come back for 7-12 when ready to level up.
+**Quick start:** Phases 0 → 1 → 3 are foundation. Then pick what you need.
+See Phase 1 intro for flexible reading paths.
 
 ## How to guide users
 

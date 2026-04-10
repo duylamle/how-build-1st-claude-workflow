@@ -6,7 +6,7 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](../../LICENSE)
 [![skills.sh](https://img.shields.io/badge/skills.sh-compatible-brightgreen)](https://skills.sh/duylamle/product-collection/claude-personal-workflow-builder)
-[![Version](https://img.shields.io/badge/version-v1.1.0-orange)](CHANGELOG.md)
+[![Version](https://img.shields.io/badge/version-v2.0.0-orange)](CHANGELOG.md)
 [![Made with Claude Code](https://img.shields.io/badge/Made_with-Claude_Code-blueviolet?logo=anthropic)](https://claude.ai/claude-code)
 [![Last Commit](https://img.shields.io/github/last-commit/duylamle/product-collection)](https://github.com/duylamle/product-collection)
 
@@ -76,7 +76,7 @@ npx skills add duylamle/product-collection@claude-personal-workflow-builder -y
 | 11 | [**Tuning**](guide/11-tuning.md) | Escalation ladder: feedback → rule → validator |
 | 12 | [**Iterate & Grow**](guide/12-iterate-grow.md) | Monthly review, publishing, scaling |
 
-> 💨 **Minimum viable path:** Phases 0 → 1 → 3 → 4 → 5 → 6 gets you a working system.
+> 💨 **Minimum viable path:** Phases 0 → 1 → 3 are foundation. Then pick what you need — just skills (6)? Rules + skills (4 + 6)? Full system (4 + 6 + 5 + 7)? See Phase 1 for flexible paths.
 
 ---
 
@@ -119,6 +119,7 @@ The `examples/` folder has complete setups for three roles — ready to adapt:
 
 | Role | Agents Included |
 |---|---|
+| 📋 [**Product Owner**](examples/po-setup.md) | PO + Challenger + Secretary |
 | 📝 [**Content Marketer**](examples/marketer-setup.md) | Writer + Analyst + Reviewer |
 | 💻 [**Software Developer**](examples/developer-setup.md) | Doc Writer + Code Reviewer + Debug Assistant |
 | 📊 [**Product Manager**](examples/manager-setup.md) | Meeting Secretary + Planner + Decision Reviewer |
@@ -127,12 +128,13 @@ Each example includes full `CLAUDE.md`, `AGENT.md`, `SKILL.md`, rules, and memor
 
 ---
 
-## 🔄 Two Modes
+## 🔄 Three Modes
 
 | Mode | Best For |
 |---|---|
 | **🟢 Guided** (default) | First-time setup — walk through each phase step by step |
 | **📋 Menu** | Returning users — jump to any specific phase |
+| **💬 Consult** | Q&A — ask about concepts, troubleshoot issues, get design advice |
 
 ---
 
@@ -148,9 +150,7 @@ Built by **Lê Trương Duy Lam** — Technical Product Owner at [VNG Corporatio
 
 ## 📌 Version
 
-**Current: v1.1.0** (2026-04-07) — See [CHANGELOG.md](CHANGELOG.md) for full history.
-
----
+**Current: v2.0.0** (2026-04-10) — See [CHANGELOG.md](CHANGELOG.md) for full history.
 
 ---
 

@@ -2,12 +2,22 @@
 
 **Generate self-contained SPA mockups with Pug — from idea to clickable prototype in minutes.**
 
-[![Version](https://img.shields.io/badge/version-v1.0.0-orange)](CHANGELOG.md)
+[![Version](https://img.shields.io/badge/version-v1.1.0-orange)](CHANGELOG.md)
 [![skills.sh](https://img.shields.io/badge/skills.sh-compatible-brightgreen)](https://skills.sh/duylamle/product-collection/pug-mockup)
 [![Made with Claude Code](https://img.shields.io/badge/Made_with-Claude_Code-blueviolet?logo=anthropic)](https://claude.ai/claude-code)
 [![Pug v3](https://img.shields.io/badge/Pug-v3-A86454?logo=pug)](https://pugjs.org)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](../../LICENSE)
 [![Last Commit](https://img.shields.io/github/last-commit/duylamle/product-collection)](https://github.com/duylamle/product-collection)
+
+---
+
+## What This Does (No Code Required)
+
+You describe what you want in plain language → AI builds a clickable prototype → you open it in your browser. One file, works offline, share with anyone.
+
+**You don't need to know Pug, HTML, or CSS.** Just describe your pages, layout, and style. AI handles the code. You review the visual result and ask for changes.
+
+New to this? Start with the [**Nontech Workflow Guide**](guide/0-nontech-workflow.md) — it walks you through everything step by step.
 
 ---
 
@@ -73,6 +83,7 @@ pug-mockup/
 
 | # | Guide | When to read |
 |---|---|---|
+| 0 | [**Nontech Workflow**](guide/0-nontech-workflow.md) | **Start here** if you're not technical |
 | 1 | [Pug Syntax](guide/1-pug-syntax.md) | Learning Pug or looking up syntax |
 | 2 | [Ideal Workflow](guide/2-ideal-workflow.md) | Understanding the full mockup pipeline |
 | 3 | [Input Spec](guide/3-input-spec.md) | Feeding better input from companion skills |
@@ -93,24 +104,18 @@ The skill produces a **single self-contained HTML file**:
 |---|---|
 | UI/UX planning | Design before coding — layout, flow, wireframe |
 | Design system | Feed color/typography tokens into `main.css` |
-| Accessibility audit | QC the mockup after build |
+| Production frontend (Next.js, Vue, Svelte) | Convert approved mockup to production code |
+| Heuristic / usability evaluation | QC the mockup — Nielsen's 10, WCAG, visual consistency |
+| Accessibility audit | Check contrast, touch targets, keyboard navigation |
+| Prompt engineering | Write better prompts for complex multi-page mockups |
 
 Find complementary skills on [skills.sh](https://skills.sh).
 
+**Design references:** [awesome-design-md](https://github.com/VoltAgent/awesome-design-md) — 58 design systems (Apple, Google, Stripe, Linear, etc.) as markdown files. Reference any of them when describing your desired style.
+
 ## Converting to Production
 
-Pug mockups transfer to any framework:
-
-| Pug | → Production |
-|---|---|
-| Mixin | React/Vue component |
-| `include` | ES module `import` |
-| CSS tokens | Tailwind config |
-| Lucide SVG | `lucide-react` / `lucide-vue` |
-
-Vue natively supports Pug in templates (`<template lang="pug">`).
-
-See [full conversion guide](guide/4-convert-to-production.md) for step-by-step + syntax mapping.
+Pug mockups are not a dead-end — ~60-70% of CSS, layout, and component structure transfers to React, Vue, Svelte, or Angular. See the [full conversion guide](guide/4-convert-to-production.md) for step-by-step instructions and syntax mapping.
 
 ---
 

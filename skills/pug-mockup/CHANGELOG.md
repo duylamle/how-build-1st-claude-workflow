@@ -1,5 +1,13 @@
 # Changelog — pug-mockup
 
+## v1.1.0 (2026-04-10)
+
+### Added
+- **Nontech Workflow Guide** (`guide/0-nontech-workflow.md`) — step-by-step for non-technical users: describe → build → iterate, with cheat sheet
+- **Nontech-first README** — "What This Does" section at top explaining the skill in plain language
+- **Concrete prompt examples** in input spec guide (3 detailed prompts)
+- **awesome-design-md reference** — 58 design systems for style inspiration
+
 ## v1.0.0 (2026-04-08)
 
 ### Added

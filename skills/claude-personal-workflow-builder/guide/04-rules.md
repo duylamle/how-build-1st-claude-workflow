@@ -71,6 +71,23 @@ When analyzing problems or listing options:
 - AI structures analysis cleanly (MECE) so you can evaluate options properly
 - AI stays objective rather than telling you what you want to hear
 
+### From Pain Points to Rules
+
+Not sure what rules to write? Start with what annoys you. Every good rule started as a frustration:
+
+| Your pain point | The rule it becomes |
+|---|---|
+| "AI keeps saying 'certainly' and 'definitely' when it can't possibly know" | Use probabilistic language — "likely", "probably", "needs confirmation" |
+| "AI writes 3 paragraphs when I need 2 sentences" | Direct and concise — get to the point, no filler |
+| "AI picks one option and sells it hard without mentioning downsides" | Recommendations must state reasoning + trade-offs, don't advocate one side |
+| "AI answers my ambiguous question with a confident wrong answer" | If a request can be interpreted multiple ways, ask BEFORE producing |
+| "AI rounds my exact numbers into vague approximations" | Preserve exact numbers from source — never round or generalize data |
+| "AI keeps mixing English and my language randomly" | Define language rules — when to use which language |
+
+**The pattern:** `[thing AI does wrong]` → `[opposite behavior, stated as rule]`
+
+Next time AI does something that makes you frown, write it down. That's your next rule.
+
 ---
 
 ## Rule 2: Workflow

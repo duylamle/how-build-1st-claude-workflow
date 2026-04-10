@@ -2,6 +2,11 @@
 
 > Versioning: Y = number of skills, Z = patch (docs/badges). See CLAUDE.md.
 
+## v0.2.2 (2026-04-10)
+
+- Updated `claude-personal-workflow-builder` to v2.0.0 (flexible phases, references, PO example)
+- Updated `pug-mockup` to v1.1.0 (nontech workflow guide, concrete prompts)
+
 ## v0.2.1 (2026-04-08)
 
 - Added closing footer with visitor badge to all READMEs

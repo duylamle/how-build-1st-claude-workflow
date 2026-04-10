@@ -24,14 +24,20 @@ nơi các AI agents chuyên biệt làm việc cùng nhau dưới sự điều p
 
 ## How to Use
 
-**Two modes:**
+**Three modes:**
 
 - **Guided** (default) — Say "build my AI workflow" or "guide me through
-  setting up my AI system". I'll walk you through each phase sequentially,
-  asking for your input and generating files at each step.
+  setting up my AI system". I'll walk you through each phase, asking for
+  your input and generating files at each step.
 
 - **Menu** — Say "show me the phases" or "I want to jump to phase 5".
   I'll show all 13 phases and you pick which one to work on.
+
+- **Consult** — Say "I have a question about my AI system" or "consult
+  about agents". I answer questions, troubleshoot issues, and advise on
+  design decisions — no step-by-step walkthrough, just direct Q&A.
+  Best for people who already have a system or want to understand
+  concepts before building.
 
 ## The 13 Phases
 
@@ -51,15 +57,16 @@ nơi các AI agents chuyên biệt làm việc cùng nhau dưới sự điều p
 | 11 | Tuning | Escalation ladder for improving output |
 | 12 | Iterate & Grow | Monthly review, publishing, scaling |
 
-**Quick start:** Phases 0 → 1 → 3 → 4 → 5 → 6 get you a working system.
-Come back for 7-12 when ready to level up.
+**Quick start:** Phases 0 → 1 → 3 are required foundation. Then pick what
+you need — just skills (6)? Rules + skills (4 + 6)? Full system with agents
+(4 + 6 + 5 + 7)? See Phase 1 for flexible reading paths.
 
 ## Instructions for Claude
 
 When the user triggers this skill:
 
-1. Ask: "Guided mode (I'll walk you through step by step) or Menu mode
-   (pick a specific phase)?"
+1. Ask: "Which mode? Guided (step by step), Menu (pick a phase), or
+   Consult (ask me anything about AI systems)?"
 2. **Guided mode**: Start at Phase 0. For each phase:
    - Read the corresponding guide file from `guide/0X-*.md`
    - Explain the concepts and why they matter
@@ -68,9 +75,15 @@ When the user triggers this skill:
    - Show what was created, ask if ready for next phase
 3. **Menu mode**: Show the phase table above. User picks a phase.
    Read and execute that phase's guide file.
-4. Reference `examples/` when the user asks "show me what this looks
-   like for a [role]" — we have marketer, developer, and manager examples.
-5. After each phase, briefly note what was accomplished and what comes next.
+4. **Consult mode**: Answer questions directly using guide files,
+   references, and examples as knowledge base. No walkthrough — just
+   focused answers with relevant context. Read the specific guide/reference
+   files that relate to the user's question. If the user describes their
+   current setup, give tailored advice (what to add, what to change,
+   what to skip).
+5. Reference `examples/` when the user asks "show me what this looks
+   like for a [role]" — we have PO, marketer, developer, and manager examples.
+6. After each phase, briefly note what was accomplished and what comes next.
 
 ### Key principles to follow while guiding:
 - Ask before generating — understand the user's role and needs first
@@ -78,3 +91,5 @@ When the user triggers this skill:
 - Use templates/ as starting points, customize based on user input
 - When user seems overwhelmed, remind them of the quick start path
 - Each phase should feel like a conversation, not a lecture
+- Reference `references/` when users ask about external research,
+  RAG architectures, prompt techniques, or enterprise AI platforms
