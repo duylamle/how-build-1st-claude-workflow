@@ -2,6 +2,10 @@
 
 > Versioning: Y = number of skills, Z = patch (docs/badges). See CLAUDE.md.
 
+## v0.4.0 (2026-04-20)
+
+- Added skill #4: `sidekick-agent-mcp-setup` v1.0.0 — Install sidekick-agent MCP for shifting tokens from senior Claude to a cheaper junior LLM. Ships the Python MCP server source inside the skill (no `git clone` required) plus delegation rule (`rules/rule-sidekick-delegation.md`) and nested companion skill `skills/sidekick-call/` (SKILL.md + prompts.md + verify.md) for day-to-day calls.
+
 ## v0.3.0 (2026-04-16)
 
 - Added skill #3: `excel-pipeline` v1.0.0 — Parse multi-source data → JSONL → formatted Excel (7 Python scripts: parse, merge, audit, diff, export)

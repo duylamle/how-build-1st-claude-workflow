@@ -5,7 +5,7 @@
 **Claude Code skills for people who build products.**
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
-[![Version](https://img.shields.io/badge/version-v0.3.0-orange)](CHANGELOG.md)
+[![Version](https://img.shields.io/badge/version-v0.4.0-orange)](CHANGELOG.md)
 [![skills.sh](https://img.shields.io/badge/skills.sh-compatible-brightgreen)](https://skills.sh/duylamle/product-collection)
 [![Made with Claude Code](https://img.shields.io/badge/Made_with-Claude_Code-blueviolet?logo=anthropic)](https://claude.ai/claude-code)
 [![Last Commit](https://img.shields.io/github/last-commit/duylamle/product-collection)](https://github.com/duylamle/product-collection)
@@ -84,6 +84,22 @@ Parse multi-source data (Excel, CSV, markdown) into JSONL, then export to format
 
 ```bash
 npx skills add duylamle/product-collection@excel-pipeline -y
+```
+
+### 4. Sidekick Setup
+
+[![View Skill — v1.0.0](https://img.shields.io/badge/View_Skill-v1.0.0-orange)](skills/sidekick-agent-mcp-setup/README.md)
+
+Install the [sidekick-agent MCP server](https://github.com/ltdlam/sidekick-agent-mcp) and start shifting tokens from your expensive senior Claude to a cheaper junior LLM (Claude Haiku, OpenRouter, MiniMax via LiteLLM, or self-hosted). Covers install, backend config, Claude Code registration, delegation rule, and a nested `sidekick-call` companion skill for day-to-day use.
+
+**Controlled token shift, not outsourcing:**
+- Senior frames narrow scope for the junior — junior never guesses
+- Senior verifies junior output before persisting — encoding, facts, shape
+- One MCP call = one action; multi-step work is a chain of calls the senior orchestrates
+- Bundles the delegation rule + call skill — install one, get everything
+
+```bash
+npx skills add duylamle/product-collection@sidekick-agent-mcp-setup -y
 ```
 
 > More skills coming. Each is self-contained with its own guide, templates, and examples.
